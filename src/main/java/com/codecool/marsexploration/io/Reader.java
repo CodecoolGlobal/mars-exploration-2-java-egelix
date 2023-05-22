@@ -6,35 +6,30 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Reader {
 
-    public String[][] mapGenerator(SimulationInput input) {
+    public String[][] mapReader(String mapPath) throws IOException {
         String[][] mapArr;
-        InputStream inputStream = getClass().getResourceAsStream(input.mapPath());
+        InputStream inputStream = getClass().getResourceAsStream(mapPath);
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line = br.readLine();
             mapArr = new String[line.length()][line.length()];
-            for (int i = 0; i < line.length(); i++) {
-
+            updateArrValuesFromLine(mapArr, 0, line);
+            for (int row = 1; row < line.length(); row++) {
+                line = br.readLine();
+                updateArrValuesFromLine(mapArr, row, line);
             }
-            while ((line = br.readLine()) != null && !line.isEmpty()) {
-                List<String> fields = super.getFieldsFromLine(line);
-                Long personId = Long.valueOf(fields.get(0));
-                String id = fields.get(1);
-                String name = fields.get(2);
-                String character = fields.get(3);
-                Role role = Role.valueOf(fields.get(4));
-                credits.add(new Credit(personId, id, name, character, role));
-            }
-            return credits;
-        } catch (IOException e) {
-            System.out.println("File not found");
+            return mapArr;
         }
-
     }
 
+        private void updateArrValuesFromLine (String[][]mapArr,int row, String line){
+            char[] charArr = line.toCharArray();
+            for (int col = 0; col < charArr.length; col++) {
+                mapArr[row][col] = String.valueOf(charArr[col]);
+            }
+        }
 
-}
+
+    }
