@@ -17,4 +17,43 @@ public class Context {
     }
 
 
+    public int getStepNumber() {
+        return stepNumber;
+    }
+
+    public void setStepNumber(int stepNumber) {
+        this.stepNumber = stepNumber;
+    }
+
+    public int getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(int timeout) {
+        this.timeout = timeout;
+    }
+
+    public Coordinate getLanding() {
+        return landing;
+    }
+
+    public void setLanding(Coordinate landing) {
+        this.landing = landing;
+    }
+
+    public Rover getRover() {
+        return rover;
+    }
+
+    public void setRover(Rover rover) {
+        this.rover = rover;
+    }
+
+    public Outcome getOutcome() {
+        return outcome;
+    }
+
+    public void setOutcome(Outcome outcome) {
+        this.outcome = outcome;
+    }
 }
