@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,7 +39,6 @@ class ReaderTest {
                 {" "," "," "," "," "," "," "," "," "," "," "," ","#","#","#"," ","#","#","#","#","#"," ","~"," "},
                 {" "," "," "," "," "," "," "," "," "," "," "," "," "," ","~","#"," "," "," "," "," "," "," "," "},
                 {" "," "," "," "," "," "," "," "," "," "," "," "," "," ","~"," "," "," "," "," "," "," "," "," "},
-                {" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
                 {" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "}
         };
 
@@ -52,6 +52,6 @@ class ReaderTest {
     void mapReader(String path, String[][] expected) throws IOException {
         Reader reader = new Reader();
         String[][] result = reader.mapReader(path);
-        assertEquals(expected, result);
+        assertTrue(Arrays.deepEquals(result, expected));
     }
 }
