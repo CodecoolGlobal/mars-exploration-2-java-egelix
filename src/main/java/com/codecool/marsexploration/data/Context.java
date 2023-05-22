@@ -11,6 +11,11 @@ public class Context {
     private final int[][] map;
     private final Coordinate landing;
     private final Rover rover;
+
+    public int getStepNumber() {
+        return stepNumber;
+    }
+
     private int stepNumber;
     private Outcome outcome;
     private List<LogFile> logFile;
