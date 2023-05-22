@@ -5,10 +5,9 @@ import com.codecool.marsexploration.data.Outcome;
 
 import java.util.Optional;
 
-public class TimeoutAnalyzer implements Analyzer{
+public class TimeoutAnalyzer implements Analyzer {
     @Override
     public Optional<Outcome> analyze(Context context) {
-        return
-                Optional.empty();
+        return Optional.empty();
     }
 }

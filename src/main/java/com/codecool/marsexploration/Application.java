@@ -6,15 +6,13 @@ import com.codecool.marsexploration.logic.ExplorationSimulator;
 import com.codecool.marsexploration.logic.analyzer.Analyzer;
 import com.codecool.marsexploration.logic.analyzer.SuccessAnalyzer;
 import com.codecool.marsexploration.logic.analyzer.TimeoutAnalyzer;
-import com.codecool.marsexploration.logic.phase.Analysis;
 
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
 
-        List<Analyzer> analyzers = List.of(new TimeoutAnalyzer(),new SuccessAnalyzer(), new LackOfRessourcesAnalyzer());
-        Analysis analysis = new Analysis((Analyzer) analyzers);
+        List<Analyzer> analyzers = List.of(new TimeoutAnalyzer(), new SuccessAnalyzer(), new LackOfRessourcesAnalyzer());
 
         ExplorationSimulator simulator = new ExplorationSimulator();
         SimulationInput input = new SimulationInput(
