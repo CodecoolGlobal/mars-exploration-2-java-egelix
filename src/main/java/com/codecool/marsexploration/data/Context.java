@@ -27,4 +27,16 @@ public class Context {
     public void setLogFile(List<LogFile> logFile) {
         this.logFile = logFile;
     }
+
+    public int getTimeout() {
+        return timeout;
+    }
+
+    public int getStepNumber() {
+        return stepNumber;
+    }
+
+    public List<LogFile> getLogFile() {
+        return logFile;
+    }
 }
