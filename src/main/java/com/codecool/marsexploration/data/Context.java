@@ -1,6 +1,6 @@
 package com.codecool.marsexploration.data;
 
-import com.codecool.marsexploration.data.rover.FoundResources;
+import com.codecool.marsexploration.data.rover.FoundResource;
 import com.codecool.marsexploration.data.rover.Rover;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class Context {
     private List<LogFile> logFile;
     private Set<Coordinate> scannedFields;
     private Set<Coordinate> possibleNextMove;
-    private Set<FoundResources> foundResources;
+    private Set<FoundResource> foundResources;
 
     public Context(int timeout, String[][] map, Coordinate landing, Rover rover) {
         this.timeout = timeout;
@@ -81,11 +81,11 @@ public class Context {
         this.possibleNextMove = possibleNextMove;
     }
 
-    public Set<FoundResources> getFoundResources() {
+    public Set<FoundResource> getFoundResources() {
         return foundResources;
     }
 
-    public void setFoundResources(Set<FoundResources> foundResources) {
+    public void setFoundResources(Set<FoundResource> foundResources) {
         this.foundResources = foundResources;
     }
 }
