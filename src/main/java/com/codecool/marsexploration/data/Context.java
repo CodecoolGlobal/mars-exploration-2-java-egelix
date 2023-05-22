@@ -1,5 +1,7 @@
 package com.codecool.marsexploration.data;
 
+import java.util.List;
+
 public class Context {
     private final int timeout;
     private final int[][] map;
@@ -31,5 +33,17 @@ public class Context {
 
     public void setLogFile(List<LogFile> logFile) {
         this.logFile = logFile;
+    }
+
+    public int getTimeout() {
+        return timeout;
+    }
+
+    public int getStepNumber() {
+        return stepNumber;
+    }
+
+    public List<LogFile> getLogFile() {
+        return logFile;
     }
 }
