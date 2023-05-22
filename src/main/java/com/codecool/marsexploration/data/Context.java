@@ -1,5 +1,7 @@
 package com.codecool.marsexploration.data;
 
+import java.util.List;
+
 public class Context {
     private final int timeout;
     private final int[][] map;
