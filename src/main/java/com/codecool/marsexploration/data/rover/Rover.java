@@ -1,5 +1,6 @@
-package com.codecool.marsexploration.data;
+package com.codecool.marsexploration.data.rover;
 
+import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.logic.routine.Routine;
 
 import java.util.List;
