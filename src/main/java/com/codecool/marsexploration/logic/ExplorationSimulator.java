@@ -3,7 +3,6 @@ package com.codecool.marsexploration.logic;
 import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.SimulationInput;
 import com.codecool.marsexploration.logic.phase.*;
-import com.codecool.marsexploration.utility.ContentGenerator;
 import com.codecool.marsexploration.utility.ContextGenerator;
 
 import java.util.HashMap;
