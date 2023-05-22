@@ -1,27 +1,29 @@
 package com.codecool.marsexploration.logic.phase;
 
 import com.codecool.marsexploration.data.Context;
-import com.codecool.marsexploration.logic.analyzer.Analyzer;
+import com.codecool.marsexploration.data.Coordinate;
+import com.codecool.marsexploration.data.Symbol;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Analysis implements Phase {
-    int foundWater = 0;
-    int foundMinerals = 0;
-    List<Analyzer> analyzers;
-
-    public Analysis(List<Analyzer> analyzers) {
-        this.analyzers = analyzers;
-    }
 
     @Override
     public void perform(Context context) {
-        updateFoundRessourcesAmount(context.getLogFile());
-        for (Analyzer analyzer : analyzers) {
-            analyzer.analyze(context);
-        }
+        Set<Coordinate> scannedCoordinates = context.getScannedFields();
+        String[][] map = context.getMap();
+        getPossibleNextCoordinates(context, scannedCoordinates, map);
+        //ToDo make add FoundResources to Set and keep old set!
     }
 
-    private void updateFoundRessourcesAmount(List<LogFile> logFile) {
+    private void getPossibleNextCoordinates(Context context, Set<Coordinate> scannedCoordinates, String[][] map) {
+        Set<Coordinate> possibleNextMove = new HashSet<>();
+        for (Coordinate coordinate : scannedCoordinates) {
+            if (map[coordinate.y()][coordinate.x()].equals(Symbol.EMPTY.getSymbol())) {
+                possibleNextMove.add(coordinate);
+            }
+        }
+        context.setPossibleNextMove(possibleNextMove);
     }
 }
