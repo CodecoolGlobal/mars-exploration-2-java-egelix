@@ -19,7 +19,7 @@ public class Log implements Phase {
     @Override
     public void perform(Context context) {
         displayLog(context);
-
+        //ToDo add Writer with ActualLog or With List of all Logs.
     }
 
     private void displayLog(Context context) {
@@ -33,13 +33,16 @@ public class Log implements Phase {
                 mineral = ";\nMINERAL AMOUNT " + foundResource.getAmount() + " COORDINATE " + foundResource.getCoordinate();
             }
         }
-        display.printEndLines();
+        display.printTitle("Actual log");
         display.message("STEP " + context.getStepNumber() +
-                "; EVENT " + (context.getOutcome() == null ? context.getRover().getRoutine() : context.getOutcome()) +
+                "; EVENT " + (context.getOutcome().isEmpty() ? context.getRover().getRoutine() : context.getOutcome()) +
                 "; UNIT " + context.getRover().getId() +
-                "; POSITION " + context.getRover().getPosition() +
-                water +
-                mineral);
+                "; POSITION " + context.getRover().getPosition());
+        display.printSubtitle("Found resources");
+        display.printSubtitle("water");
+        display.message(water);
+        display.printSubtitle("mineral");
+        display.printSubtitle(mineral);
         display.printEndLines();
     }
 }
