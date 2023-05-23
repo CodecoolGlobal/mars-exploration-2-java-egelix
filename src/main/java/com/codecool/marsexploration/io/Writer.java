@@ -1,6 +1,5 @@
 package com.codecool.marsexploration.io;
 
-import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.LogFile;
 
 import java.io.BufferedWriter;
@@ -9,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 
 public class Writer {
     //File path = new File(System.getProperty("src/main/resources/output/"));
@@ -38,6 +36,7 @@ public class Writer {
                 "," + log.position().x() + "]\n";
         return logStr;
     }
+
     private File getDestination() {
         String path = "src/main/resources/output/";
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuMMdd");
@@ -49,5 +48,4 @@ public class Writer {
         file.getParentFile().mkdirs();
         return file;
     }
-
 }
