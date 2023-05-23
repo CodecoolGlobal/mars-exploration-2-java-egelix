@@ -7,13 +7,14 @@ public class Context {
     Coordinate landing;
     Rover rover;
     Outcome outcome;
-    //TODO: property for log file
+    String logFile;
 
-    public Context(int stepNumber, int timeout, Coordinate landing, Rover rover) {
+    public Context(int stepNumber, int timeout, Coordinate landing, Rover rover, String logFile) {
         this.stepNumber = stepNumber;
         this.timeout = timeout;
         this.landing = landing;
         this.rover = rover;
+        this.logFile = logFile;
     }
 
 
