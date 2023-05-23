@@ -1,7 +1,6 @@
 package com.codecool.marsexploration.logic;
 
 import com.codecool.marsexploration.data.Context;
-import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.SimulationInput;
 import com.codecool.marsexploration.data.Symbol;
 import com.codecool.marsexploration.data.rover.FoundResource;
