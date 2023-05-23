@@ -10,8 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Writer {
-    //File path = new File(System.getProperty("src/main/resources/output/"));
-    //File file = new File(path,"Logfile.log");
+
     public void writeLog(LogFile log) {
         try {
             doWrite(log);
@@ -29,23 +28,33 @@ public class Writer {
     }
 
     public String getLogStr(LogFile log) {
-        String logStr = "STEP " + log.step() +
-                "; EVENT " + log.event() +
-                "; UNIT rover-" + log.roverId() +
-                "; POSITION [" + log.position().y() +
-                "," + log.position().x() + "]\n";
-        return logStr;
+        if (log.outcome() == null) {
+            return "STEP " + log.step() +
+                    "; EVENT " + log.event() +
+                    "; UNIT rover-" + log.roverId() +
+                    "; POSITION [" + log.position().y() +
+                    "," + log.position().x() + "]\n";
+        } else {
+            return "STEP " + log.step() +
+                    "; EVENT " + log.event() +
+                    "; OUTCOME " + log.outcome();
+        }
     }
 
     private File getDestination() {
         String path = "src/main/resources/output/";
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuMMdd");
-        LocalDate localDate = LocalDate.now();
-        dtf.format(localDate);
-        String dateString = dtf.format(localDate);
+        String dateString = getDatePartOfFileName();
         String fileName = path + dateString + "/" + "LogFile_" + dateString + ".log";
         File file = new File(fileName);
         file.getParentFile().mkdirs();
         return file;
+    }
+
+    private static String getDatePartOfFileName() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuMMdd");
+        LocalDate localDate = LocalDate.now();
+        dtf.format(localDate);
+        String dateString = dtf.format(localDate);
+        return dateString;
     }
 }
