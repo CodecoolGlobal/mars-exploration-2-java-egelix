@@ -14,7 +14,8 @@ public class Context {
     private int stepNumber;
     private Optional<Outcome> outcome;
     private List<LogFile> logFile;
-    private Set<Coordinate> scannedFields;
+    private Set<Coordinate> nextMoveCoordinates;
+    private Set<Coordinate> coordinatesAroundRoverSight;
 
     public Context(int timeout, String[][] map, Coordinate landing, Rover rover, Optional<Outcome> outcome) {
         this.timeout = timeout;
@@ -64,11 +65,19 @@ public class Context {
         this.logFile = logFile;
     }
 
-    public Set<Coordinate> getScannedFields() {
-        return scannedFields;
+    public Set<Coordinate> getNextMoveCoordinates() {
+        return nextMoveCoordinates;
     }
 
-    public void setScannedFields(Set<Coordinate> scannedFields) {
-        this.scannedFields = scannedFields;
+    public void setNextMoveCoordinates(Set<Coordinate> nextMoveCoordinates) {
+        this.nextMoveCoordinates = nextMoveCoordinates;
+    }
+
+    public Set<Coordinate> getCoordinatesAroundRoverSight() {
+        return coordinatesAroundRoverSight;
+    }
+
+    public void setCoordinatesAroundRoverSight(Set<Coordinate> coordinatesAroundRoverSight) {
+        this.coordinatesAroundRoverSight = coordinatesAroundRoverSight;
     }
 }
