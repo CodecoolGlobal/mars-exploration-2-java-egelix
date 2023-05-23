@@ -4,7 +4,6 @@ import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.rover.Rover;
 import com.codecool.marsexploration.logic.movement.Move;
-import com.codecool.marsexploration.logic.movement.RandomMove;
 
 import java.util.Set;
 

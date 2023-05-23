@@ -23,7 +23,7 @@ public class ExplorationSimulator {
     private final CoordinateCreator coordinateCreator = new CoordinateCreator();
     private final Display display = new Display();
     private final Writer writer = new Writer();
-    private final Move randomMove = new RandomMove();
+    private final Move chosenMove = new RandomMove();
     private final Set<FoundResource> foundResources = new HashSet<>(List.of(
             new FoundResource(Symbol.MINERAL.getSymbol(), 0, new HashSet<>()),
             new FoundResource(Symbol.WATER.getSymbol(), 0, new HashSet<>())
@@ -34,7 +34,7 @@ public class ExplorationSimulator {
             new LackOfRessourcesAnalyzer()
     );
     private final List<Phase> phases = List.of(
-            new Movement(randomMove),
+            new Movement(chosenMove),
             new Scan(coordinateCreator, foundResources),
             new Analysis(analyzers),
             new Log(display, writer, foundResources),
