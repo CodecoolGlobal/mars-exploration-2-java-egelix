@@ -20,6 +20,7 @@ public class ExplorationSimulator {
             new FoundResource(Symbol.WATER.getSymbol(), 0, new HashSet<>())));
 
     public void simulate(SimulationInput input) {
+        //TODO: implement movement
         HashSet<Phase> phases = initializePhases();
         ContextGenerator contextGenerator = new ContextGenerator();
         Context context = contextGenerator.generate(input);
