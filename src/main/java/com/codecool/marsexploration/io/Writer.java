@@ -7,6 +7,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 public class Writer {
@@ -21,10 +23,8 @@ public class Writer {
     }
 
     private void doWrite(LogFile log) throws IOException {
-        String path = "src/main/resources/output/";
-        String fileName = path + "Logfile.log";
         String logStr = getLogStr(log);
-        File file = new File(fileName);
+        File file = getDestination();
         BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
         writer.write(logStr);
         writer.close();
@@ -38,4 +38,16 @@ public class Writer {
                 "," + log.position().x() + "]\n";
         return logStr;
     }
+    private File getDestination() {
+        String path = "src/main/resources/output/";
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuMMdd");
+        LocalDate localDate = LocalDate.now();
+        dtf.format(localDate);
+        String dateString = dtf.format(localDate);
+        String fileName = path + dateString + "/" + "LogFile_" + dateString + ".log";
+        File file = new File(fileName);
+        file.getParentFile().mkdirs();
+        return file;
+    }
+
 }
