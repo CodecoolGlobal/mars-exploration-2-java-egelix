@@ -35,7 +35,7 @@ public class Writer {
                 "; EVENT " + log.event() +
                 "; UNIT rover-" + log.roverId() +
                 "; POSITION [" + log.position().y() +
-                "," + log.position().x() + "]";
+                "," + log.position().x() + "]\n";
         return logStr;
     }
 }
