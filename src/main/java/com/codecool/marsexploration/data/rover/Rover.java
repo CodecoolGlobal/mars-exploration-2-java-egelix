@@ -19,6 +19,14 @@ public class Rover {
         this.routine = routine;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public int getSight() {
+        return sight;
+    }
+
     public Coordinate getPosition() {
         return position;
     }

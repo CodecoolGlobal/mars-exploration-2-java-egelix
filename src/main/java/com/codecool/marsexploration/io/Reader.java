@@ -1,7 +1,5 @@
 package com.codecool.marsexploration.io;
 
-import com.codecool.marsexploration.data.SimulationInput;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,12 +22,10 @@ public class Reader {
         }
     }
 
-        private void updateArrValuesFromLine (String[][]mapArr,int row, String line){
-            char[] charArr = line.toCharArray();
-            for (int col = 0; col < charArr.length; col++) {
-                mapArr[row][col] = String.valueOf(charArr[col]);
-            }
+    private void updateArrValuesFromLine(String[][] mapArr, int row, String line) {
+        char[] charArr = line.toCharArray();
+        for (int col = 0; col < charArr.length; col++) {
+            mapArr[row][col] = String.valueOf(charArr[col]);
         }
-
-
     }
+}
