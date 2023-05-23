@@ -5,6 +5,7 @@ import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.Outcome;
 import com.codecool.marsexploration.data.Symbol;
 import com.codecool.marsexploration.data.rover.FoundResource;
+import com.codecool.marsexploration.data.rover.Rover;
 import com.codecool.marsexploration.logic.CoordinateCreator;
 
 import java.util.Optional;
@@ -37,7 +38,8 @@ public class Scan implements Phase {
     }
 
     private Set<Coordinate> getCoordinatesAroundRover(Context context, Coordinate currentRoverPosition, String[][] map) {
-        Set<Coordinate> scannedCoordinates = coordinateCreator.aroundRover(currentRoverPosition, map.length);
+        Rover rover = context.getRover();
+        Set<Coordinate> scannedCoordinates = coordinateCreator.aroundRover(currentRoverPosition, map.length, rover.getSight());
         context.setScannedFields(scannedCoordinates);
         return scannedCoordinates;
     }

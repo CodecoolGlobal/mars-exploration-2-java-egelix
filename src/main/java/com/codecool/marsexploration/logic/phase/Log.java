@@ -3,16 +3,19 @@ package com.codecool.marsexploration.logic.phase;
 import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.Symbol;
 import com.codecool.marsexploration.data.rover.FoundResource;
+import com.codecool.marsexploration.io.Writer;
 import com.codecool.marsexploration.ui.Display;
 
 import java.util.Set;
 
 public class Log implements Phase {
     private final Display display;
+    private final Writer writer;
     private final Set<FoundResource> foundResources;
 
-    public Log(Display display, Set<FoundResource> foundResources) {
+    public Log(Display display, Writer writer, Set<FoundResource> foundResources) {
         this.display = display;
+        this.writer = writer;
         this.foundResources = foundResources;
     }
 
