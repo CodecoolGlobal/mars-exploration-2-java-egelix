@@ -12,8 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 public class Writer {
-    //File path = new File(System.getProperty("src/main/resources/output/"));
-    //File file = new File(path,"Logfile.log");
+
     public void writeLog(LogFile log) {
         try {
             doWrite(log);
@@ -40,14 +39,19 @@ public class Writer {
     }
     private File getDestination() {
         String path = "src/main/resources/output/";
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuMMdd");
-        LocalDate localDate = LocalDate.now();
-        dtf.format(localDate);
-        String dateString = dtf.format(localDate);
+        String dateString = getDatePartOfFileName();
         String fileName = path + dateString + "/" + "LogFile_" + dateString + ".log";
         File file = new File(fileName);
         file.getParentFile().mkdirs();
         return file;
+    }
+
+    private static String getDatePartOfFileName() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuMMdd");
+        LocalDate localDate = LocalDate.now();
+        dtf.format(localDate);
+        String dateString = dtf.format(localDate);
+        return dateString;
     }
 
 }
