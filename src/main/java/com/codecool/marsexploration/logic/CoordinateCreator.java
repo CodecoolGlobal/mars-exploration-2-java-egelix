@@ -10,9 +10,9 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 public class CoordinateCreator {
-    public Set<Coordinate> aroundRover(Coordinate current, int mapSize) {
+    public Set<Coordinate> aroundRover(Coordinate current, int mapSize, int sight) {
         Coordinate zero = new Coordinate(0, 0);
-        return IntStream.rangeClosed(-1, 1)
+        return IntStream.rangeClosed(-sight, sight)
                 .mapToObj(x -> IntStream.rangeClosed(-1, 1).mapToObj(y -> new Coordinate(y, x)).collect(toList()))
                 .flatMap(List::stream)
                 .filter(transformation -> !transformation.equals(zero))
