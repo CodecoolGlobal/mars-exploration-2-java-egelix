@@ -12,5 +12,8 @@ public class TestMain {
         Coordinate coordinateTest = new Coordinate(10, 10);
         Set<Coordinate> test = coordinateCreator.aroundRover(coordinateTest, 20, 2);
         System.out.println(test.size());
+        for (Coordinate c : test) {
+            System.out.println(c);
+        }
     }
 }
