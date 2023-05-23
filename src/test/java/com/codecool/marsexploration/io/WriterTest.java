@@ -2,6 +2,7 @@ package com.codecool.marsexploration.io;
 
 import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.LogFile;
+import com.codecool.marsexploration.data.Outcome;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -16,8 +17,27 @@ class WriterTest {
 
     public static Stream<Arguments> argumentsForWriterTests() {
         return Stream.of(
-                Arguments.of(new LogFile(3, "stepping", 4, new Coordinate(3,3), "unknown"),
-                        "STEP 3; EVENT stepping; UNIT rover-4; POSITION [3,3]")
+                Arguments.of(new LogFile(
+                                3,
+                                "position",
+                                4,
+                                new Coordinate(3,3),
+                                null),
+                        "STEP 3; EVENT position; UNIT rover-4; POSITION [3,3]"),
+                Arguments.of(new LogFile(
+                                4,
+                                "position",
+                                4,
+                                new Coordinate(4,3),
+                                null),
+                        "STEP 4; EVENT position; UNIT rover-4; POSITION [4,3]"),
+                Arguments.of(new LogFile(
+                                5,
+                                "outcome",
+                                4,
+                                new Coordinate(5,3),
+                                "TIMEOUT"),
+                        "STEP 5; EVENT outcome; OUTCOME TIMEOUT")
         );
     }
 

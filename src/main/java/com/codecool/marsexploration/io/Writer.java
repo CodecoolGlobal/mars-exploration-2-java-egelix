@@ -30,12 +30,17 @@ public class Writer {
     }
 
     public String getLogStr(LogFile log) {
-        String logStr = "STEP " + log.step() +
-                "; EVENT " + log.event() +
-                "; UNIT rover-" + log.roverId() +
-                "; POSITION [" + log.position().y() +
-                "," + log.position().x() + "]\n";
-        return logStr;
+        if (log.outcome() == null) {
+            return "STEP " + log.step() +
+                    "; EVENT " + log.event() +
+                    "; UNIT rover-" + log.roverId() +
+                    "; POSITION [" + log.position().y() +
+                    "," + log.position().x() + "]\n";
+        } else {
+            return "STEP " + log.step() +
+                    "; EVENT " + log.event() +
+                    "; OUTCOME " + log.outcome();
+        }
     }
     private File getDestination() {
         String path = "src/main/resources/output/";
