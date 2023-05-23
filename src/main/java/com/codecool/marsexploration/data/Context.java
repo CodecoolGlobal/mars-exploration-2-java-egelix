@@ -3,6 +3,7 @@ package com.codecool.marsexploration.data;
 import com.codecool.marsexploration.data.rover.Rover;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class Context {
@@ -11,15 +12,16 @@ public class Context {
     private final Coordinate landing;
     private final Rover rover;
     private int stepNumber;
-    private Outcome outcome;
+    private Optional<Outcome> outcome;
     private List<LogFile> logFile;
     private Set<Coordinate> scannedFields;
 
-    public Context(int timeout, String[][] map, Coordinate landing, Rover rover) {
+    public Context(int timeout, String[][] map, Coordinate landing, Rover rover, Optional<Outcome> outcome) {
         this.timeout = timeout;
         this.map = map;
         this.landing = landing;
         this.rover = rover;
+        this.outcome = outcome;
     }
 
     public int getTimeout() {
@@ -46,11 +48,11 @@ public class Context {
         this.stepNumber = stepNumber;
     }
 
-    public Outcome getOutcome() {
+    public Optional<Outcome> getOutcome() {
         return outcome;
     }
 
-    public void setOutcome(Outcome outcome) {
+    public void setOutcome(Optional<Outcome> outcome) {
         this.outcome = outcome;
     }
 
