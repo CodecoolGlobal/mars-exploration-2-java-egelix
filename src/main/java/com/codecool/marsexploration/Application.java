@@ -4,6 +4,7 @@ import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.SimulationInput;
 import com.codecool.marsexploration.logic.ExplorationSimulator;
 import com.codecool.marsexploration.logic.analyzer.Analyzer;
+import com.codecool.marsexploration.logic.analyzer.LackOfRessourcesAnalyzer;
 import com.codecool.marsexploration.logic.analyzer.SuccessAnalyzer;
 import com.codecool.marsexploration.logic.analyzer.TimeoutAnalyzer;
 
