@@ -5,6 +5,6 @@ import com.codecool.marsexploration.data.rover.Rover;
 
 import java.util.Set;
 
-public interface MoveInterface {
-    void move(String [][] map,Coordinate landing, Set<Coordinate> scannedFields, Rover rover);
+public interface Move {
+    void move(String[][] map, Coordinate landing, Set<Coordinate> scannedFields, Rover rover);
 }
