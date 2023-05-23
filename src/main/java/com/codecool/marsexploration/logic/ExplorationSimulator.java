@@ -4,6 +4,7 @@ import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.SimulationInput;
 import com.codecool.marsexploration.data.Symbol;
 import com.codecool.marsexploration.data.rover.FoundResource;
+import com.codecool.marsexploration.io.Writer;
 import com.codecool.marsexploration.logic.analyzer.Analyzer;
 import com.codecool.marsexploration.logic.analyzer.LackOfRessourcesAnalyzer;
 import com.codecool.marsexploration.logic.analyzer.SuccessAnalyzer;
@@ -19,6 +20,7 @@ import java.util.Set;
 public class ExplorationSimulator {
     private final CoordinateCreator coordinateCreator = new CoordinateCreator();
     private final Display display = new Display();
+    private final Writer writer = new Writer();
     private final Set<FoundResource> foundResources = new HashSet<>(List.of(
             new FoundResource(Symbol.MINERAL.getSymbol(), 0, new HashSet<>()),
             new FoundResource(Symbol.WATER.getSymbol(), 0, new HashSet<>())
@@ -32,7 +34,7 @@ public class ExplorationSimulator {
             new Movement(),
             new Scan(coordinateCreator, foundResources),
             new Analysis(analyzers),
-            new Log(display, foundResources),
+            new Log(display, writer, foundResources),
             new StepIncrement()
     );
 
