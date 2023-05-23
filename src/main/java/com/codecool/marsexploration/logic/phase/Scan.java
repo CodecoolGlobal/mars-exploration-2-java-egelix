@@ -15,7 +15,6 @@ public class Scan implements Phase {
     private final CoordinateCreator coordinateCreator;
     private final Set<FoundResource> foundResources;
 
-
     public Scan(CoordinateCreator coordinateCreator, Set<FoundResource> foundResources) {
         this.coordinateCreator = coordinateCreator;
         this.foundResources = foundResources;
@@ -25,31 +24,20 @@ public class Scan implements Phase {
     public void perform(Context context) {
         Coordinate currentRoverPosition = context.getRover().getPosition();
         String[][] map = context.getMap();
-        Set<Coordinate> coordinatesAroundRover = getCoordinatesAroundRover(context, currentRoverPosition, map);
+        Set<Coordinate> nextMoveCoordinates = coordinateCreator.aroundRover(currentRoverPosition, map.length, 1);
+        context.setNextMoveCoordinates(nextMoveCoordinates);
+        setOutcomeToWrongLandingIfNextMoveNotPossible(context, map, nextMoveCoordinates);
+        updateFoundResourcesWitScanOfRoverSight(context, currentRoverPosition, map);
+    }
+
+    private void setOutcomeToWrongLandingIfNextMoveNotPossible(Context context, String[][] map, Set<Coordinate> nextMoveCoordinates) {
         int counterForOutcome = 0;
-        for (Coordinate coordinate : coordinatesAroundRover) {
+        for (Coordinate coordinate : nextMoveCoordinates) {
             String symbol = map[coordinate.y()][coordinate.x()];
-            updateFoundResources(coordinate, symbol);
             counterForOutcome = getCounter(counterForOutcome, symbol);
         }
         if (counterForOutcome >= 8) {
             context.setOutcome(Optional.of(Outcome.WRONG_LANDING_COORDINATES));
-        }
-    }
-
-    private Set<Coordinate> getCoordinatesAroundRover(Context context, Coordinate currentRoverPosition, String[][] map) {
-        Rover rover = context.getRover();
-        Set<Coordinate> scannedCoordinates = coordinateCreator.aroundRover(currentRoverPosition, map.length, rover.getSight());
-        context.setScannedFields(scannedCoordinates);
-        return scannedCoordinates;
-    }
-
-    private void updateFoundResources(Coordinate coordinate, String symbol) {
-        for (FoundResource foundResource : foundResources) {
-            if (symbol.equals(foundResource.getSymbol())) {
-                foundResource.setAmount(foundResource.getAmount() + 1);
-                foundResource.addCoordinate(coordinate);
-            }
         }
     }
 
@@ -59,5 +47,24 @@ public class Scan implements Phase {
             counterForOutcome++;
         }
         return counterForOutcome;
+    }
+
+    private void updateFoundResourcesWitScanOfRoverSight(Context context, Coordinate currentRoverPosition, String[][] map) {
+        Rover rover = context.getRover();
+        Set<Coordinate> coordinatesAroundRoverSight = coordinateCreator.aroundRover(currentRoverPosition, map.length, rover.getSight());
+        context.setCoordinatesAroundRoverSight(coordinatesAroundRoverSight);
+        for (Coordinate coordinate : coordinatesAroundRoverSight) {
+            String symbol = map[coordinate.y()][coordinate.x()];
+            updateFoundResources(coordinate, symbol);
+        }
+    }
+
+    private void updateFoundResources(Coordinate coordinate, String symbol) {
+        for (FoundResource foundResource : foundResources) {
+            if (symbol.equals(foundResource.getSymbol())) {
+                foundResource.setAmount(foundResource.getAmount() + 1);
+                foundResource.addCoordinate(coordinate);
+            }
+        }
     }
 }
