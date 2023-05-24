@@ -3,6 +3,7 @@ package com.codecool.marsexploration.data.rover;
 import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.logic.movement.Move;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Rover {
@@ -10,7 +11,7 @@ public class Rover {
     private final int sight;
     private Move move;
     private Coordinate position;
-    private Set<Coordinate> coordinatesTracker;
+    private Set<Coordinate> coordinatesTracker = new HashSet<>();
 
     public Rover(int id, Coordinate position, int sight, Move move) {
         this.id = id;
