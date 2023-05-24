@@ -1,7 +1,6 @@
 package com.codecool.marsexploration;
 
 import com.codecool.marsexploration.data.Context;
-import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.SimulationInput;
 import com.codecool.marsexploration.data.SuccessCondition;
 import com.codecool.marsexploration.logic.ExplorationSimulator;
@@ -18,7 +17,7 @@ public class Application {
                 "/exploration-1.map",
                 100,
                 "src/main/resources/exploration-1.log",
-                new SuccessCondition(5,5));
+                new SuccessCondition(5, 5));
         ContextGenerator contextGenerator = new ContextGenerator(display, random);
         Context context = contextGenerator.generate(input);
         ExplorationSimulator simulator = new ExplorationSimulator(context);
