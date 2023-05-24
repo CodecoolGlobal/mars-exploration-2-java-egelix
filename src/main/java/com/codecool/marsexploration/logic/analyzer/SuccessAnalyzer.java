@@ -9,24 +9,8 @@ import java.util.Map;
 import java.util.Optional;
 
 public class SuccessAnalyzer implements Analyzer{
-    private int foundMin;
-    private int foundWater;
-
-    private int successMin;
-    private int successWater;
-    Context context;
-
-    public SuccessAnalyzer(Context context) {
-        this.foundMin = 0;
-        this.foundWater = 0;
-        this.context = context;
-        this.successMin = context.getSuccessCondition().amountMinerals();
-        this.successWater = context.getSuccessCondition().amountWater();
-    }
-
     @Override
-    public Optional<Outcome> analyze() {
-
+    public Optional<Outcome> analyze(Context context) {
         Map<Coordinate, String> scannedCoordinates = context.getScannedCoordinates();
         scannedCoordinates.entrySet().stream()
                 .peek(entry -> updateFoundResoures(entry));
@@ -35,9 +19,9 @@ public class SuccessAnalyzer implements Analyzer{
 
     private void updateFoundResoures(Map.Entry<Coordinate, String> entry) {
             if (entry.getValue() == Symbol.MINERAL.getSymbol()) {
-                foundMin += 1;
+                //foundMin += 1;
             } else if (entry.getValue() == Symbol.WATER.getSymbol()) {
-                foundWater += 1;
+                //foundWater += 1;
         }
     }
 }
