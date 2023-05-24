@@ -19,7 +19,7 @@ public class Application {
                 "/exploration-1.map",
                 100,
                 "src/main/resources/exploration-1.log",
-                new SuccessCondition(1, 1));
+                new SuccessCondition(1, 1, 50, 50));
         ContextGenerator contextGenerator = new ContextGenerator(display, random);
         Context context = contextGenerator.generate(input);
         place.randomAlien(context, 5);
