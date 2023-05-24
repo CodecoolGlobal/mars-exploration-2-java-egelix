@@ -1,7 +1,6 @@
 package com.codecool.marsexploration.logic.phase;
 
 import com.codecool.marsexploration.data.Context;
-import com.codecool.marsexploration.data.Symbol;
 import com.codecool.marsexploration.io.Writer;
 import com.codecool.marsexploration.ui.Display;
 
@@ -39,9 +38,11 @@ public class Log implements Phase {
 
         display.printTitle("Actual log " + context.getStepNumber());
         display.message("STEP " + context.getStepNumber() +
-                "; EVENT " + (context.getOutcome().isEmpty() ? context.getRover().getMove().getName() : context.getOutcome()) +
+                "; EVENT " + (context.getOutcome().isEmpty() ?
+                context.getRover().getMove().getName() +
                 "; UNIT " + context.getRover().getId() +
-                "; POSITION " + context.getRover().getPosition());
+                "; POSITION " + context.getRover().getPosition() :
+                "outcome; OUTCOME " + context.getOutcome().get()));
         /*
         display.printTitle("Found resources");
         display.printSubtitle("water");
