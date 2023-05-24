@@ -85,5 +85,10 @@ public class Context {
     public HashMap<Coordinate, String> getScannedCoordinates() {
         return scannedCoordinates;
     }
-    public addToScannedCoordinates()
+    public void addToScannedCoordinates(Set<Coordinate> coordinates) {
+        for(Coordinate coordinate: coordinates) {
+            String symbol = map[coordinate.y()][coordinate.x()];
+            scannedCoordinates.put(coordinate, symbol);
+        }
+    }
 }
