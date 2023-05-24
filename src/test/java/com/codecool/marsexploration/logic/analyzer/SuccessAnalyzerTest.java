@@ -17,8 +17,8 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SuccessAnalyzerTest {
-    public static Stream<Arguments> dataForAnalyzeTest() throws IOException {
-        return Stream.of(
+    public static Stream<Arguments> dataForAnalyzeTest() {
+                return Stream.of(
                 Arguments.of(5, 5, Outcome.COLONIZABLE),
                 Arguments.of(7, 7, Outcome.COLONIZABLE),
                 Arguments.of(3, 7, null),
@@ -28,7 +28,7 @@ class SuccessAnalyzerTest {
     @ParameterizedTest
     @MethodSource("dataForAnalyzeTest")
     void analyzeTest(int waterToSet, int mineralToSet, Outcome expected) {
-        Context context = new Context(10, null, null, null, Optional.empty(), new SuccessCondition(5,5));
+        Context context = new Context(10, null, null, null, Optional.empty(), new SuccessCondition(5,5, 50, 50));
         for(int i = 0; i < waterToSet; i++) {
             context.getScannedCoordinates().put(new Coordinate(i,i), "~");
         }
@@ -38,6 +38,6 @@ class SuccessAnalyzerTest {
         SuccessAnalyzer analyzer = new SuccessAnalyzer();
         Optional<Outcome> outcomeOpt = analyzer.analyze(context);
         Outcome result = outcomeOpt.isPresent() ? outcomeOpt.get() : null;
-        assertEquals(result, expected);
+        assertEquals(expected, result);
     }
 }

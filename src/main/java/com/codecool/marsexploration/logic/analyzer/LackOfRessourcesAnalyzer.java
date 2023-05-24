@@ -20,13 +20,13 @@ public class LackOfRessourcesAnalyzer implements Analyzer{
     private boolean resourcesUnderConditionThreshold(Context context) {
         int amountFoundResources = getAmountFoundResources(context);
         SuccessCondition condition = context.getSuccessCondition();
-        return amountFoundResources < ((condition.amountWater() +
+        return amountFoundResources < ((double) (condition.amountWater() +
                 condition.amountMinerals()) / 100 * condition.resourceThresholdRatio());
     }
 
     private boolean stepsOverConditionThreshold(Context context) {
         SuccessCondition condition = context.getSuccessCondition();
-        return context.getStepNumber() >= context.getTimeout() / 100 * condition.stepThresholdRatio();
+        return context.getStepNumber() >= (double) context.getTimeout() / 100 * condition.stepThresholdRatio();
     }
 
     private static int getAmountFoundResources(Context context) {

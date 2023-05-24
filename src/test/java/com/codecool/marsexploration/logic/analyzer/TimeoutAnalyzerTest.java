@@ -16,13 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TimeoutAnalyzerTest {
 
-    public static Stream<Arguments> dataForAnalyzeTest() throws IOException {
-        Reader reader = new Reader();
-        String[][] map = reader.mapReader("/exploration-1.map");
-        //context1.getScannedCoordinates().put(new Coordinate(3,3), "~");
-        //context1.getScannedCoordinates().put(new Coordinate(4,4), "~");
-        //context1.getScannedCoordinates().put(new Coordinate(5,5), "~");
-        //context1.getScannedCoordinates().put(new Coordinate(6,6), "*");
+    public static Stream<Arguments> dataForAnalyzeTest(){
         return Stream.of(
                 Arguments.of(10, Outcome.TIMEOUT),
                 Arguments.of(12, Outcome.TIMEOUT),
@@ -38,11 +32,11 @@ class TimeoutAnalyzerTest {
     @ParameterizedTest
     @MethodSource("dataForAnalyzeTest")
     void analyzeTest(int stepsToSet, Outcome expected) {
-        Context context = new Context(10, null, null, null, Optional.empty(), new SuccessCondition(5,5));
+        Context context = new Context(10, null, null, null, Optional.empty(), new SuccessCondition(5,5, 50, 50));
         context.setStepNumber(stepsToSet);
         TimeoutAnalyzer analyzer = new TimeoutAnalyzer();
         Optional<Outcome> outcomeOpt = analyzer.analyze(context);
         Outcome result = outcomeOpt.isPresent() ? outcomeOpt.get() : null;
-        assertEquals(result, expected);
+        assertEquals(expected, result);
     }
 }

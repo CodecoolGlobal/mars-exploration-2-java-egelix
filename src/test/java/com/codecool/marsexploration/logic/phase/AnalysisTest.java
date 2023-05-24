@@ -33,7 +33,7 @@ class AnalysisTest {
     @ParameterizedTest
     @MethodSource("dataForAnalyzeTest")
     void performTest(int stepsToSet, int waterToSet, int mineralToSet, Outcome expected) {
-        Context context = new Context(10, null, null, null, Optional.empty(), new SuccessCondition(5,5));
+        Context context = new Context(10, null, null, null, Optional.empty(), new SuccessCondition(5,5, 50, 50));
         context.setStepNumber(stepsToSet);
         for(int i = 0; i < waterToSet; i++) {
             context.getScannedCoordinates().put(new Coordinate(i,i), "~");
