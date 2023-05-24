@@ -20,12 +20,12 @@ public class SuccessAnalyzer implements Analyzer {
         return context.getOutcome();
     }
 
-    private static boolean enoughResourcesForSuccess(Context context, int foundMin, int foundWater) {
+    private boolean enoughResourcesForSuccess(Context context, int foundMin, int foundWater) {
         return foundMin >= context.getSuccessCondition().amountMinerals() &&
                 foundWater >= context.getSuccessCondition().amountWater();
     }
 
-    private static int getAmountFoundResource(Map<Coordinate, String> scannedCoordinates, Symbol symbol) {
+    private int getAmountFoundResource(Map<Coordinate, String> scannedCoordinates, Symbol symbol) {
         return (int) scannedCoordinates.entrySet().stream()
                 .filter(entry -> entry.getValue().equals(symbol.getSymbol()))
                 .count();
