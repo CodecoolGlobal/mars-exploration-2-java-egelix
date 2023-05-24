@@ -3,7 +3,7 @@ package com.codecool.marsexploration.utility;
 import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.SimulationInput;
-import com.codecool.marsexploration.data.rover.Rover;
+import com.codecool.marsexploration.data.Rover;
 import com.codecool.marsexploration.io.Reader;
 import com.codecool.marsexploration.logic.movement.RandomMove;
 import com.codecool.marsexploration.ui.Display;

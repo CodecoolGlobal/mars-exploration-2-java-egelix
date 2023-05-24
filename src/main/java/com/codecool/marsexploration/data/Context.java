@@ -1,7 +1,5 @@
 package com.codecool.marsexploration.data;
 
-import com.codecool.marsexploration.data.rover.Rover;
-
 import java.util.*;
 
 public class Context {

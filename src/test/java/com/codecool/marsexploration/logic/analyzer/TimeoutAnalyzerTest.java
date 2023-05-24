@@ -1,13 +1,9 @@
 package com.codecool.marsexploration.logic.analyzer;
 
 import com.codecool.marsexploration.data.Context;
-import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.Outcome;
 import com.codecool.marsexploration.data.SuccessCondition;
-import com.codecool.marsexploration.data.rover.Rover;
 import com.codecool.marsexploration.io.Reader;
-import com.codecool.marsexploration.io.Writer;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

@@ -2,7 +2,7 @@ package com.codecool.marsexploration.logic.phase;
 
 import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.Coordinate;
-import com.codecool.marsexploration.data.rover.Rover;
+import com.codecool.marsexploration.data.Rover;
 import com.codecool.marsexploration.logic.movement.Move;
 
 import java.util.Set;

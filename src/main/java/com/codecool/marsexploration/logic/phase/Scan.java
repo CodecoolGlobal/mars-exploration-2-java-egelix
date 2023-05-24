@@ -4,7 +4,7 @@ import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.Outcome;
 import com.codecool.marsexploration.data.Symbol;
-import com.codecool.marsexploration.data.rover.Rover;
+import com.codecool.marsexploration.data.Rover;
 import com.codecool.marsexploration.logic.CoordinateCreator;
 
 import java.util.Optional;

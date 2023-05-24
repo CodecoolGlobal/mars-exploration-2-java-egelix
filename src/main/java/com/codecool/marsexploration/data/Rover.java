@@ -1,4 +1,4 @@
-package com.codecool.marsexploration.data.rover;
+package com.codecool.marsexploration.data;
 
 import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.logic.movement.Move;
