@@ -1,9 +1,12 @@
 package com.codecool.marsexploration.logic.phase;
 
 import com.codecool.marsexploration.data.Context;
+import com.codecool.marsexploration.data.Outcome;
 import com.codecool.marsexploration.logic.analyzer.Analyzer;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 public class Analysis implements Phase {
 
@@ -15,8 +18,10 @@ public class Analysis implements Phase {
 
     @Override
     public void perform(Context context) {
-        for (Analyzer analyzer : analyzers) {
-            analyzer.analyze(context);
-        }
+        analyzers.stream()
+                .map(analyzer -> analyzer.analyze(context))
+                .filter(optional -> optional.isPresent())
+                .findFirst()
+                .stream().peek(optional -> context.setOutcome(optional));
     }
 }
