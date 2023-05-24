@@ -17,7 +17,7 @@ public class Application {
                 "/exploration-1.map",
                 100,
                 "src/main/resources/exploration-1.log",
-                new SuccessCondition(5, 5));
+                new SuccessCondition(1, 1));
         ContextGenerator contextGenerator = new ContextGenerator(display, random);
         Context context = contextGenerator.generate(input);
         ExplorationSimulator simulator = new ExplorationSimulator(context);
