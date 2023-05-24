@@ -4,7 +4,6 @@ import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.Outcome;
 import com.codecool.marsexploration.data.Symbol;
-import com.codecool.marsexploration.data.rover.FoundResource;
 import com.codecool.marsexploration.data.rover.Rover;
 import com.codecool.marsexploration.logic.CoordinateCreator;
 
@@ -13,11 +12,9 @@ import java.util.Set;
 
 public class Scan implements Phase {
     private final CoordinateCreator coordinateCreator;
-    private final Set<FoundResource> foundResources;
 
-    public Scan(CoordinateCreator coordinateCreator, Set<FoundResource> foundResources) {
+    public Scan(CoordinateCreator coordinateCreator) {
         this.coordinateCreator = coordinateCreator;
-        this.foundResources = foundResources;
     }
 
     @Override
@@ -28,7 +25,7 @@ public class Scan implements Phase {
         Set<Coordinate> nextMoveCoordinates = coordinateCreator.aroundRover(currentRoverPosition, map.length, 1);
         context.setNextMoveCoordinates(nextMoveCoordinates);
         setOutcomeToWrongLandingIfNextMoveNotPossible(context, map, nextMoveCoordinates);
-        updateFoundResourcesWitScanOfRoverSight(context, currentRoverPosition, map);
+        updateCoordinatesAroundRoverSight(context, currentRoverPosition, map);
     }
 
     private void setOutcomeToWrongLandingIfNextMoveNotPossible(Context context, String[][] map, Set<Coordinate> nextMoveCoordinates) {
@@ -43,6 +40,7 @@ public class Scan implements Phase {
     }
 
     private int getCounter(int counterForOutcome, String symbol) {
+        //ToDo nicht ganz O/C weil wenn es mehr Symbols gibt müsste man hier immer die neuen Terrains hinzufügen
         if (symbol.equals(Symbol.PIT.getSymbol()) ||
                 symbol.equals(Symbol.MOUNTAIN.getSymbol())) {
             counterForOutcome++;
@@ -50,20 +48,20 @@ public class Scan implements Phase {
         return counterForOutcome;
     }
 
-    private void updateFoundResourcesWitScanOfRoverSight(Context context, Coordinate currentRoverPosition, String[][] map) {
+    private void updateCoordinatesAroundRoverSight(Context context, Coordinate currentRoverPosition, String[][] map) {
         Rover rover = context.getRover();
         Set<Coordinate> coordinatesAroundRoverSight = coordinateCreator.aroundRover(currentRoverPosition, map.length, rover.getSight());
         context.setCoordinatesAroundRoverSight(coordinatesAroundRoverSight);
         for (Coordinate coordinate : coordinatesAroundRoverSight) {
-            String symbol = map[coordinate.y()][coordinate.x()];
-            updateFoundResources(coordinate, symbol);
+            String mapSymbol = map[coordinate.y()][coordinate.x()];
+            updateScannedCoordinates(context, coordinate, mapSymbol);
         }
     }
 
-    private void updateFoundResources(Coordinate coordinate, String symbol) {
-        for (FoundResource foundResource : foundResources) {
-            if (symbol.equals(foundResource.getSymbol())) {
-                foundResource.addCoordinate(coordinate);
+    private void updateScannedCoordinates(Context context, Coordinate coordinate, String mapSymbol) {
+        for (Symbol enumValue : Symbol.values()) {
+            if (mapSymbol.equals(enumValue.getSymbol())) {
+                context.putScannedCoordinates(coordinate, mapSymbol);
             }
         }
     }
