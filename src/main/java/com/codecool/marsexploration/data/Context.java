@@ -2,7 +2,6 @@ package com.codecool.marsexploration.data;
 
 import com.codecool.marsexploration.data.rover.Rover;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -13,7 +12,6 @@ public class Context {
     private final Rover rover;
     private int stepNumber;
     private Optional<Outcome> outcome;
-    private List<LogFile> logFile;
     private Set<Coordinate> nextMoveCoordinates;
     private Set<Coordinate> coordinatesAroundRoverSight;
 
@@ -55,14 +53,6 @@ public class Context {
 
     public void setOutcome(Optional<Outcome> outcome) {
         this.outcome = outcome;
-    }
-
-    public List<LogFile> getLogFile() {
-        return logFile;
-    }
-
-    public void setLogFile(List<LogFile> logFile) {
-        this.logFile = logFile;
     }
 
     public Set<Coordinate> getNextMoveCoordinates() {
