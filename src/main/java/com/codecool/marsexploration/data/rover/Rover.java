@@ -42,7 +42,7 @@ public class Rover {
     public HashMap<Coordinate, String> getCoordinatesTracker() {
         return coordinatesTracker;
     }
-    
+
     public Move getMove() {
         return move;
     }

@@ -38,7 +38,7 @@ public class Log implements Phase {
         }
         display.printTitle("Actual log");
         display.message("STEP " + context.getStepNumber() +
-                "; EVENT " + (context.getOutcome().isEmpty() ? context.getRover().getRoutine() : context.getOutcome()) +
+                "; EVENT " + (context.getOutcome().isEmpty() ? context.getRover().getMove() : context.getOutcome()) +
                 "; UNIT " + context.getRover().getId() +
                 "; POSITION " + context.getRover().getPosition());
         display.printSubtitle("Found resources");
