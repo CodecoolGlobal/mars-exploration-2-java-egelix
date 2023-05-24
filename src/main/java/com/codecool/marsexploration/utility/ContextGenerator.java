@@ -29,7 +29,6 @@ public class ContextGenerator {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        display.doppleArrayMap(map, "Read Map");
         Coordinate landing = new Coordinate(random.nextInt(map.length), random.nextInt(map.length));
         Rover rover = new Rover(1, landing, random.nextInt(1, 3), new RandomMove(display, random));
         return new Context(
