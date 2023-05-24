@@ -11,13 +11,12 @@ public class Context {
     private final String[][] map;
     private final Coordinate landing;
     private final Rover rover;
+    private final SuccessCondition successCondition;
     private int stepNumber;
     private Optional<Outcome> outcome;
     private Set<Coordinate> nextMoveCoordinates;
     private Set<Coordinate> coordinatesAroundRoverSight;
     private Map<Coordinate, String> scannedCoordinates;
-
-    private final SuccessCondition successCondition;
 
     public Context(int timeout, String[][] map, Coordinate landing, Rover rover, Optional<Outcome> outcome, SuccessCondition successCondition) {
         this.timeout = timeout;
@@ -31,6 +30,7 @@ public class Context {
     public int getTimeout() {
         return timeout;
     }
+
     public SuccessCondition getSuccessCondition() {
         return successCondition;
     }
