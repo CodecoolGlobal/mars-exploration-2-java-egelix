@@ -2,9 +2,7 @@ package com.codecool.marsexploration.data;
 
 import com.codecool.marsexploration.data.rover.Rover;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class Context {
     private final int timeout;
@@ -14,9 +12,9 @@ public class Context {
     private final SuccessCondition successCondition;
     private int stepNumber;
     private Optional<Outcome> outcome;
-    private Set<Coordinate> nextMoveCoordinates;
-    private Set<Coordinate> coordinatesAroundRoverSight;
-    private Map<Coordinate, String> scannedCoordinates;
+    private Set<Coordinate> nextMoveCoordinates = new HashSet<>();
+    private Set<Coordinate> coordinatesAroundRoverSight = new HashSet<>();
+    private Map<Coordinate, String> scannedCoordinates = new HashMap<>();
 
     public Context(int timeout, String[][] map, Coordinate landing, Rover rover, Optional<Outcome> outcome, SuccessCondition successCondition) {
         this.timeout = timeout;
