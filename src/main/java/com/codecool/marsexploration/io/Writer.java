@@ -1,6 +1,6 @@
 package com.codecool.marsexploration.io;
 
-import com.codecool.marsexploration.data.LogFile;
+import com.codecool.marsexploration.data.Context;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Writer {
 
-    public void writeLog(LogFile log) {
+    public void writeLog(Context log) {
         try {
             doWrite(log);
         } catch (IOException e) {
@@ -19,25 +19,29 @@ public class Writer {
         }
     }
 
-    private void doWrite(LogFile log) throws IOException {
-        String logStr = getLogStr(log);
+    private void doWrite(Context context) throws IOException {
+        String logStr = getLogStr(context);
         File file = getDestination();
         BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
         writer.write(logStr);
         writer.close();
     }
 
-    public String getLogStr(LogFile log) {
-        if (log.outcome() == null) {
-            return "STEP " + log.step() +
-                    "; EVENT " + log.event() +
-                    "; UNIT rover-" + log.roverId() +
-                    "; POSITION [" + log.position().y() +
-                    "," + log.position().x() + "]\n";
+    public String getLogStr(Context context) {
+        if (context.getOutcome().isEmpty()) {
+            return "STEP " + context.getStepNumber() +
+                    "; EVENT " + context.getRover().getMove().getName() +
+                    "; UNIT rover-" + context.getRover().getId() +
+                    ", POSITION " + context.getRover().getPosition().toString() + "\n";
+                    /*
+                    "; POSITION [" + context.getRover().getPosition().y() +
+                    "," + context.getRover().getPosition().x() + "]\n";
+                     */
+
         } else {
-            return "STEP " + log.step() +
-                    "; EVENT " + log.event() +
-                    "; OUTCOME " + log.outcome() + "\n";
+            return "STEP " + context.getStepNumber() +
+                    "; EVENT outcome" +
+                    "; OUTCOME " + context.getOutcome();
         }
     }
 
@@ -50,11 +54,10 @@ public class Writer {
         return file;
     }
 
-    private static String getDatePartOfFileName() {
+    private String getDatePartOfFileName() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuMMdd");
         LocalDate localDate = LocalDate.now();
         dtf.format(localDate);
-        String dateString = dtf.format(localDate);
-        return dateString;
+        return dtf.format(localDate);
     }
 }
