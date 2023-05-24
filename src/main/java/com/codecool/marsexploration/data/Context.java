@@ -14,7 +14,7 @@ public class Context {
     private Optional<Outcome> outcome;
     private Set<Coordinate> nextMoveCoordinates = new HashSet<>();
     private Set<Coordinate> coordinatesAroundRoverSight = new HashSet<>();
-    private Map<Coordinate, String> scannedCoordinates = new HashMap<>();
+    private final Map<Coordinate, String> scannedCoordinates = new HashMap<>();
 
     public Context(int timeout, String[][] map, Coordinate landing, Rover rover, Optional<Outcome> outcome, SuccessCondition successCondition) {
         this.timeout = timeout;
