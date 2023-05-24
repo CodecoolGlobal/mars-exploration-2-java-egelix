@@ -36,9 +36,10 @@ public class ExplorationSimulator {
     public ExplorationSimulator(Context context) {
         this.context = context;
         this.analyzers = List.of(
-                new SuccessAnalyzer(context),
-                new TimeoutAnalyzer(context),
-                new LackOfRessourcesAnalyzer(context)
+
+                new SuccessAnalyzer(),
+                new TimeoutAnalyzer(),
+                new LackOfRessourcesAnalyzer()
         );
         this.phases = List.of(
                 new Movement(),
