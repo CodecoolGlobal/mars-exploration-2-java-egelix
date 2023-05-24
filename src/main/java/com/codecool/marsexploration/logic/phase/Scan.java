@@ -41,7 +41,8 @@ public class Scan implements Phase {
     private int getCounter(int counterForOutcome, String symbol) {
         //ToDo nicht ganz O/C weil wenn es mehr Symbols gibt müsste man hier immer die neuen Terrains hinzufügen
         if (symbol.equals(Symbol.PIT.getSymbol()) ||
-                symbol.equals(Symbol.MOUNTAIN.getSymbol())) {
+                symbol.equals(Symbol.MOUNTAIN.getSymbol()) ||
+                symbol.equals(Symbol.ALIEN.getSymbol())) {
             counterForOutcome++;
         }
         return counterForOutcome;
