@@ -62,7 +62,6 @@ public class Scan implements Phase {
     private void updateFoundResources(Coordinate coordinate, String symbol) {
         for (FoundResource foundResource : foundResources) {
             if (symbol.equals(foundResource.getSymbol())) {
-                foundResource.setAmount(foundResource.getAmount() + 1);
                 foundResource.addCoordinate(coordinate);
             }
         }
