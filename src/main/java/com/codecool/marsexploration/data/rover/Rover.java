@@ -1,17 +1,20 @@
 package com.codecool.marsexploration.data.rover;
 
 import com.codecool.marsexploration.data.Coordinate;
+import com.codecool.marsexploration.data.Symbol;
 import com.codecool.marsexploration.logic.movement.Move;
 import com.codecool.marsexploration.logic.routine.Routine;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Rover {
     private final int id;
     private final int sight;
     private Move move;
     private Coordinate position;
-    private List<Coordinate> coordinatesTracker;
+    private HashMap<Coordinate, String> coordinatesTracker;
 
     public Rover(int id, Coordinate position, int sight, Move move) {
         this.id = id;
@@ -36,13 +39,10 @@ public class Rover {
         this.position = position;
     }
 
-    public List<Coordinate> getCoordinatesTracker() {
+    public HashMap<Coordinate, String> getCoordinatesTracker() {
         return coordinatesTracker;
     }
-
-    public void setCoordinatesTracker(List<Coordinate> coordinatesTracker) {
-        this.coordinatesTracker = coordinatesTracker;
-    }
+    
     public Move getMove() {
         return move;
     }
