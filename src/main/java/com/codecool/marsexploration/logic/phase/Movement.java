@@ -17,10 +17,8 @@ public class Movement implements Phase{
         String [][] map = context.getMap();
         Coordinate landing = context.getLanding();
         Set<Coordinate> scannedFields = context.getScannedFields();
-        chosenMove = new RandomMove();
         //TODO: implement logic for switching between movement approach/return movement
+        chosenMove = new RandomMove();
         chosenMove.move(map, landing, scannedFields, rover);
-
     }
-
 }
