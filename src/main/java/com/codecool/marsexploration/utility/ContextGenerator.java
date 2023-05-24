@@ -4,6 +4,7 @@ import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.SimulationInput;
 import com.codecool.marsexploration.data.rover.Rover;
 import com.codecool.marsexploration.io.Reader;
+import com.codecool.marsexploration.logic.movement.RandomMove;
 import com.codecool.marsexploration.logic.routine.Exploring;
 
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class ContextGenerator {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Rover rover = new Rover(1, input.landing(), 1, new Exploring());
+        Rover rover = new Rover(1, input.landing(), 1, new RandomMove());
         return new Context(100, map, input.landing(), rover, Optional.empty());
     }
 }

@@ -34,7 +34,7 @@ public class ExplorationSimulator {
             new LackOfRessourcesAnalyzer()
     );
     private final List<Phase> phases = List.of(
-            new Movement(chosenMove),
+            new Movement(),
             new Scan(coordinateCreator, foundResources),
             new Analysis(analyzers),
             new Log(display, writer, foundResources),
