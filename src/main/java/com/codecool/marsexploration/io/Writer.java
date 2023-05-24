@@ -9,7 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 
 public class Writer {
 
@@ -39,7 +38,7 @@ public class Writer {
         } else {
             return "STEP " + log.step() +
                     "; EVENT " + log.event() +
-                    "; OUTCOME " + log.outcome();
+                    "; OUTCOME " + log.outcome() + "\n";
         }
     }
     private File getDestination() {

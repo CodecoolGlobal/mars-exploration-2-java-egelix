@@ -23,21 +23,21 @@ class WriterTest {
                                 4,
                                 new Coordinate(3,3),
                                 null),
-                        "STEP 3; EVENT position; UNIT rover-4; POSITION [3,3]"),
+                        "STEP 3; EVENT position; UNIT rover-4; POSITION [3,3]\n"),
                 Arguments.of(new LogFile(
                                 4,
                                 "position",
                                 4,
                                 new Coordinate(4,3),
                                 null),
-                        "STEP 4; EVENT position; UNIT rover-4; POSITION [4,3]"),
+                        "STEP 4; EVENT position; UNIT rover-4; POSITION [4,3]\n"),
                 Arguments.of(new LogFile(
                                 5,
                                 "outcome",
                                 4,
                                 new Coordinate(5,3),
                                 "TIMEOUT"),
-                        "STEP 5; EVENT outcome; OUTCOME TIMEOUT")
+                        "STEP 5; EVENT outcome; OUTCOME TIMEOUT\n")
         );
     }
 
