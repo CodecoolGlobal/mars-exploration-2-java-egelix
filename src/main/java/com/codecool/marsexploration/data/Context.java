@@ -2,7 +2,7 @@ package com.codecool.marsexploration.data;
 
 import com.codecool.marsexploration.data.rover.Rover;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -15,7 +15,7 @@ public class Context {
     private Optional<Outcome> outcome;
     private Set<Coordinate> nextMoveCoordinates;
     private Set<Coordinate> coordinatesAroundRoverSight;
-    private HashMap<Coordinate, String> scannedCoordinates;
+    private Map<Coordinate, String> scannedCoordinates;
 
     public Context(int timeout, String[][] map, Coordinate landing, Rover rover, Optional<Outcome> outcome) {
         this.timeout = timeout;
@@ -72,13 +72,12 @@ public class Context {
     public void setCoordinatesAroundRoverSight(Set<Coordinate> coordinatesAroundRoverSight) {
         this.coordinatesAroundRoverSight = coordinatesAroundRoverSight;
     }
-    public HashMap<Coordinate, String> getScannedCoordinates() {
+
+    public Map<Coordinate, String> getScannedCoordinates() {
         return scannedCoordinates;
     }
-    public void putScannedCoordinates(Set<Coordinate> coordinates) {
-        for(Coordinate coordinate: coordinates) {
-            String symbol = map[coordinate.y()][coordinate.x()];
-            scannedCoordinates.put(coordinate, symbol);
-        }
+
+    public void putScannedCoordinates(Coordinate coordinate, String symbol) {
+        scannedCoordinates.put(coordinate, symbol);
     }
 }
