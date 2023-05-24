@@ -8,9 +8,6 @@ import java.util.Optional;
 public class TimeoutAnalyzer implements Analyzer {
     @Override
     public Optional<Outcome> analyze(Context context) {
-        if (context.getStepNumber() >= context.getTimeout()) {
-            context.setOutcome(Optional.of(Outcome.TIMEOUT));
-        }
-        return context.getOutcome();
+        return context.getStepNumber() >= context.getTimeout() ? Optional.of(Outcome.TIMEOUT) : Optional.empty();
     }
 }

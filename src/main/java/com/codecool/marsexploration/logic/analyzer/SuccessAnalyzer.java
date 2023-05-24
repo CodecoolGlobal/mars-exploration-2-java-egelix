@@ -14,10 +14,9 @@ public class SuccessAnalyzer implements Analyzer {
         Map<Coordinate, String> scannedCoordinates = context.getScannedCoordinates();
         int foundMin = getAmountFoundResource(scannedCoordinates, Symbol.MINERAL);
         int foundWater = getAmountFoundResource(scannedCoordinates, Symbol.WATER);
-        if(enoughResourcesForSuccess(context, foundMin, foundWater)){
-            context.setOutcome(Optional.of(Outcome.COLONIZABLE));
-        }
-        return context.getOutcome();
+        return enoughResourcesForSuccess(context, foundMin, foundWater) ?
+                Optional.of(Outcome.COLONIZABLE) :
+                Optional.empty();
     }
 
     private boolean enoughResourcesForSuccess(Context context, int foundMin, int foundWater) {

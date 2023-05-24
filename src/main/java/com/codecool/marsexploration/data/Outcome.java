@@ -6,6 +6,5 @@ public enum Outcome {
     TIMEOUT,
     WRONG_LANDING_COORDINATES,
     NOT_COLONIZABLE_ALIENS,
-    ONGOING,
     ROVER_CANT_MOVE
 }
