@@ -2,21 +2,16 @@ package com.codecool.marsexploration.logic.phase;
 
 import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.Symbol;
-import com.codecool.marsexploration.data.rover.FoundResource;
 import com.codecool.marsexploration.io.Writer;
 import com.codecool.marsexploration.ui.Display;
-
-import java.util.Set;
 
 public class Log implements Phase {
     private final Display display;
     private final Writer writer;
-    private final Set<FoundResource> foundResources;
 
-    public Log(Display display, Writer writer, Set<FoundResource> foundResources) {
+    public Log(Display display, Writer writer) {
         this.display = display;
         this.writer = writer;
-        this.foundResources = foundResources;
     }
 
     @Override
@@ -28,7 +23,7 @@ public class Log implements Phase {
     private void displayLog(Context context) {
         String water = "";
         String mineral = "";
-        //ToDo Rewrok with new Map with Coordinate and Symbol
+        //ToDo Rework with new Map with Coordinate and Symbol
         for (FoundResource foundResource : foundResources) {
             if (Symbol.WATER.getSymbol().equals(foundResource.getSymbol())) {
                 water = ";\nWATER AMOUNT " + foundResource.getCoordinate().size()
