@@ -16,6 +16,6 @@ public class Movement implements Phase {
         Set<Coordinate> scannedFields = context.getNextMoveCoordinates();
         //TODO: implement logic for switching between movement approach/return movement
         Move chosenMove = rover.getMove();
-        chosenMove.move(map, landing, scannedFields, rover);
+        chosenMove.move(context);
     }
 }
