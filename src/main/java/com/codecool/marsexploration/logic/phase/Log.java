@@ -24,6 +24,8 @@ public class Log implements Phase {
         String water = "";
         String mineral = "";
         //ToDo Rework with new Map with Coordinate and Symbol
+
+        /*
         for (FoundResource foundResource : foundResources) {
             if (Symbol.WATER.getSymbol().equals(foundResource.getSymbol())) {
                 water = ";\nWATER AMOUNT " + foundResource.getCoordinate().size()
@@ -33,6 +35,8 @@ public class Log implements Phase {
                 mineral = ";\nMINERAL AMOUNT " + foundResource.getCoordinate().size() + " COORDINATE " + foundResource.getCoordinate();
             }
         }
+         */
+
         display.printTitle("Actual log");
         display.message("STEP " + context.getStepNumber() +
                 "; EVENT " + (context.getOutcome().isEmpty() ? context.getRover().getMove().getName() : context.getOutcome()) +
