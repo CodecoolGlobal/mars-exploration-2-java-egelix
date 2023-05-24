@@ -37,7 +37,7 @@ public class Writer {
         } else {
             return "STEP " + log.step() +
                     "; EVENT " + log.event() +
-                    "; OUTCOME " + log.outcome();
+                    "; OUTCOME " + log.outcome() + "\n";
         }
     }
 
