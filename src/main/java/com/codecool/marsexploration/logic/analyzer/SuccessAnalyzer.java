@@ -9,25 +9,35 @@ import java.util.Map;
 import java.util.Optional;
 
 public class SuccessAnalyzer implements Analyzer{
+    private int foundMin;
+    private int foundWater;
+
+    private int successMin;
+    private int successWater;
+    Context context;
+
+    public SuccessAnalyzer(Context context) {
+        this.foundMin = 0;
+        this.foundWater = 0;
+        this.context = context;
+        this.successMin = context.getSuccessCondition().amountMinerals();
+        this.successWater = context.getSuccessCondition().amountWater();
+    }
+
     @Override
-    public Optional<Outcome> analyze(Context context) {
-        int foundMin = 0;
-        int foundWater = 0;
+    public Optional<Outcome> analyze() {
+
         Map<Coordinate, String> scannedCoordinates = context.getScannedCoordinates();
         scannedCoordinates.entrySet().stream()
-                .peek(entry -> {
-                    if (entry.getValue() = Symbol.MINERAL.getSymbol()) {
-                        foundMin += 1;
-                    } else if (entry.getValue() = Symbol.WATER.getSymbol())
-                })
-
-
+                .peek(entry -> updateFoundResoures(entry));
         return Optional.empty();
     }
 
-    private void updateFoundResoures(Map.Entry<Coordinate, String> entry, int foundMin, int foundWater) {
-        if (entry.getValue() = Symbol.MINERAL.getSymbol()) {
-
+    private void updateFoundResoures(Map.Entry<Coordinate, String> entry) {
+            if (entry.getValue() == Symbol.MINERAL.getSymbol()) {
+                foundMin += 1;
+            } else if (entry.getValue() == Symbol.WATER.getSymbol()) {
+                foundWater += 1;
         }
     }
 }

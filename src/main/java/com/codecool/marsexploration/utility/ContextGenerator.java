@@ -20,6 +20,14 @@ public class ContextGenerator {
             throw new RuntimeException(e);
         }
         Rover rover = new Rover(1, input.landing(), 1, new RandomMove());
-        return new Context(100, map, input.landing(), rover, Optional.empty());
+
+        return new Context(
+                input.timeout(),
+                map,
+                input.landing(),
+                rover,
+                Optional.empty(),
+                input.condition()
+        );
     }
 }
