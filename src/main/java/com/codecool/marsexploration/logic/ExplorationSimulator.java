@@ -2,10 +2,7 @@ package com.codecool.marsexploration.logic;
 
 import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.io.Writer;
-import com.codecool.marsexploration.logic.analyzer.Analyzer;
-import com.codecool.marsexploration.logic.analyzer.LackOfRessourcesAnalyzer;
-import com.codecool.marsexploration.logic.analyzer.SuccessAnalyzer;
-import com.codecool.marsexploration.logic.analyzer.TimeoutAnalyzer;
+import com.codecool.marsexploration.logic.analyzer.*;
 import com.codecool.marsexploration.logic.phase.*;
 import com.codecool.marsexploration.ui.Display;
 
@@ -18,8 +15,9 @@ public class ExplorationSimulator {
     private final Context context;
     private final List<Analyzer> analyzers = List.of(
             new SuccessAnalyzer(),
-            new TimeoutAnalyzer(),
-            new LackOfRessourcesAnalyzer()
+            new LackOfRessourcesAnalyzer(),
+            new AlienAnalyzer(),
+            new TimeoutAnalyzer()
     );
     private final List<Phase> phases = List.of(
             new Scan(coordinateCreator),
