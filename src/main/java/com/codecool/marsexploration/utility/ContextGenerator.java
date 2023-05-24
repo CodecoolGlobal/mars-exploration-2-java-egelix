@@ -31,7 +31,7 @@ public class ContextGenerator {
         }
         display.doppleArrayMap(map, "Read Map");
         Coordinate landing = new Coordinate(random.nextInt(map.length), random.nextInt(map.length));
-        Rover rover = new Rover(1, landing, 1, new RandomMove(display, random));
+        Rover rover = new Rover(1, landing, random.nextInt(1, 3), new RandomMove(display, random));
         return new Context(
                 input.timeout(),
                 map,
