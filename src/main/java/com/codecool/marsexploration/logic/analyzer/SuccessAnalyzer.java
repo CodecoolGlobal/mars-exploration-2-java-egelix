@@ -8,20 +8,25 @@ import com.codecool.marsexploration.data.Symbol;
 import java.util.Map;
 import java.util.Optional;
 
-public class SuccessAnalyzer implements Analyzer{
+public class SuccessAnalyzer implements Analyzer {
     @Override
     public Optional<Outcome> analyze(Context context) {
         Map<Coordinate, String> scannedCoordinates = context.getScannedCoordinates();
-        scannedCoordinates.entrySet().stream()
-                .peek(entry -> updateFoundResoures(entry));
-        return Optional.empty();
+        int foundMin = getAmountFoundResource(scannedCoordinates, Symbol.MINERAL);
+        int foundWater = getAmountFoundResource(scannedCoordinates, Symbol.WATER);
+        return enoughResourcesForSuccess(context, foundMin, foundWater) ?
+                Optional.of(Outcome.COLONIZABLE) :
+                Optional.empty();
     }
 
-    private void updateFoundResoures(Map.Entry<Coordinate, String> entry) {
-            if (entry.getValue() == Symbol.MINERAL.getSymbol()) {
-                //foundMin += 1;
-            } else if (entry.getValue() == Symbol.WATER.getSymbol()) {
-                //foundWater += 1;
-        }
+    private static boolean enoughResourcesForSuccess(Context context, int foundMin, int foundWater) {
+        return foundMin >= context.getSuccessCondition().amountMinerals() &&
+                foundWater >= context.getSuccessCondition().amountWater();
+    }
+
+    private static int getAmountFoundResource(Map<Coordinate, String> scannedCoordinates, Symbol symbol) {
+        return (int) scannedCoordinates.entrySet().stream()
+                .filter(entry -> entry.getValue().equals(symbol.getSymbol()))
+                .count();
     }
 }
