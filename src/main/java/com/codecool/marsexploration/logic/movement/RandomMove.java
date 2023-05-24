@@ -1,45 +1,51 @@
 package com.codecool.marsexploration.logic.movement;
 
+import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.Symbol;
-import com.codecool.marsexploration.data.rover.Rover;
+import com.codecool.marsexploration.ui.Display;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Random;
 
 public class RandomMove implements Move {
-    private final String name = "Random Movement";
-    private Coordinate lastVisitedCoordinate;
-    private Set<Coordinate> visitedCoordinates = new HashSet<>();
+    private final Display display;
+    private final Random random;
+
+    public RandomMove(Display display, Random random) {
+        this.display = display;
+        this.random = random;
+    }
 
     @Override
-    public void move(String[][] map, Coordinate landing, Set<Coordinate> scannedFields, Rover rover) {
-        if (lastVisitedCoordinate == null) {
-            visitedCoordinates.add(landing);
-        }
+    public void move(Context context) {
         List<Coordinate> emptyFields = new ArrayList<>();
-        for (Coordinate scannedField : scannedFields) {
-            int y = scannedField.y();
-            int x = scannedField.x();
+        validateNextEmptyCoordinates(context, emptyFields);
+        moveToNextRandomEmptyCoordinate(context, emptyFields);
+    }
 
-            if (map[y][x].equals(Symbol.EMPTY.getSymbol()) && Math.abs(y - rover.getPosition().y()) <= 1 && Math.abs(x - rover.getPosition().x()) <= 1) {
-                emptyFields.add(scannedField);
+    private void validateNextEmptyCoordinates(Context context, List<Coordinate> emptyFields) {
+        for (Coordinate nextCoordinate : context.getNextMoveCoordinates()) {
+            String mapSymbol = context.getMap()[nextCoordinate.y()][nextCoordinate.x()];
+            if (mapSymbol.equals(Symbol.EMPTY.getSymbol())) {
+                emptyFields.add(nextCoordinate);
             }
         }
-        emptyFields.removeAll(visitedCoordinates);
+        emptyFields.removeAll(context.getRover().getCoordinatesTracker());
+    }
+
+    private void moveToNextRandomEmptyCoordinate(Context context, List<Coordinate> emptyFields) {
         if (emptyFields.size() > 0) {
-            Coordinate randomEmptyField = emptyFields.get((int) (Math.random() * emptyFields.size()));
-            rover.setPosition(randomEmptyField);
-            lastVisitedCoordinate = randomEmptyField;
-            visitedCoordinates.add(randomEmptyField);
+            Coordinate randomEmptyField = emptyFields.get(random.nextInt(emptyFields.size()));
+            context.getRover().setPosition(randomEmptyField);
+            context.getRover().addCoordinatesTracker(randomEmptyField);
         } else {
-            rover.setPosition(lastVisitedCoordinate);
+            display.errorMessage("No more empty next coordinate");
         }
     }
 
     public String getName() {
-        return name;
+        return "Random Movement";
     }
 }
