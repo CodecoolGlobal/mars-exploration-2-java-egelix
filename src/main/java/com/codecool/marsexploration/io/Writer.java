@@ -1,6 +1,5 @@
 package com.codecool.marsexploration.io;
 
-import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.LogFile;
 
 import java.io.BufferedWriter;
@@ -41,6 +40,7 @@ public class Writer {
                     "; OUTCOME " + log.outcome() + "\n";
         }
     }
+
     private File getDestination() {
         String path = "src/main/resources/output/";
         String dateString = getDatePartOfFileName();
@@ -57,5 +57,4 @@ public class Writer {
         String dateString = dtf.format(localDate);
         return dateString;
     }
-
 }
