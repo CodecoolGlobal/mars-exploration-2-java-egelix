@@ -22,18 +22,19 @@ public class Log implements Phase {
     @Override
     public void perform(Context context) {
         displayLog(context);
-        //ToDo add Writer with ActualLog or With List of all Logs.
+        writer.writeLog(context);
     }
 
     private void displayLog(Context context) {
         String water = "";
         String mineral = "";
+        //ToDo Slap Code If looks same
         for (FoundResource foundResource : foundResources) {
             if (Symbol.WATER.getSymbol().equals(foundResource.getSymbol())) {
-                water = ";\nWATER AMOUNT " + foundResource.getAmount() + " COORDINATE " + foundResource.getCoordinate();
+                water = ";\nWATER AMOUNT " + foundResource.getCoordinate().size() + " COORDINATE " + foundResource.getCoordinate();
             }
             if (Symbol.MINERAL.getSymbol().equals(foundResource.getSymbol())) {
-                mineral = ";\nMINERAL AMOUNT " + foundResource.getAmount() + " COORDINATE " + foundResource.getCoordinate();
+                mineral = ";\nMINERAL AMOUNT " + foundResource.getCoordinate().size() + " COORDINATE " + foundResource.getCoordinate();
             }
         }
         display.printTitle("Actual log");
