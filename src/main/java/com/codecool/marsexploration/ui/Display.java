@@ -1,9 +1,18 @@
 package com.codecool.marsexploration.ui;
 
+import java.util.Arrays;
+
 public class Display {
     private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_DEFAULT = "\u001B[0m";
-    private final int displayLength = 80;
+    private final int displayLength = 72;
+
+    public void doppleArrayMap(String[][] map, String message) {
+        printTitle(message);
+        for (String[] yString : map) {
+            System.out.println(Arrays.toString(yString));
+        }
+    }
 
     public void printTitle(String title) {
         System.out.println();
