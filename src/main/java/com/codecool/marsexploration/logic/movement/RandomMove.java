@@ -42,7 +42,7 @@ public class RandomMove implements Move {
             Coordinate randomEmptyField = emptyFields.get(random.nextInt(emptyFields.size()));
             context.getRover().setPosition(randomEmptyField);
             context.getRover().addCoordinatesTracker(randomEmptyField);
-        } else {
+        } else if(context.getOutcome().isEmpty()){
             display.errorMessage("No more empty next coordinate");
             context.setOutcome(Optional.of(Outcome.ROVER_CANT_MOVE));
         }
