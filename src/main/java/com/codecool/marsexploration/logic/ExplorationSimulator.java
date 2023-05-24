@@ -28,22 +28,29 @@ public class ExplorationSimulator {
             new FoundResource(Symbol.MINERAL.getSymbol(), 0, new HashSet<>()),
             new FoundResource(Symbol.WATER.getSymbol(), 0, new HashSet<>())
     ));
-    private final List<Analyzer> analyzers = List.of(
-            new SuccessAnalyzer(),
-            new TimeoutAnalyzer(),
-            new LackOfRessourcesAnalyzer()
-    );
-    private final List<Phase> phases = List.of(
-            new Movement(),
-            new Scan(coordinateCreator, foundResources),
-            new Analysis(analyzers),
-            new Log(display, writer, foundResources),
-            new StepIncrement()
-    );
+    private final List<Analyzer> analyzers;
+    private final List<Phase> phases;
 
-    public void simulate(SimulationInput input) {
-        ContextGenerator contextGenerator = new ContextGenerator();
-        Context context = contextGenerator.generate(input);
+    Context context;
+
+    public ExplorationSimulator(Context context) {
+        this.context = context;
+        this.analyzers = List.of(
+                new SuccessAnalyzer(context),
+                new TimeoutAnalyzer(context),
+                new LackOfRessourcesAnalyzer(context)
+        );
+        this.phases = List.of(
+                new Movement(),
+                new Scan(coordinateCreator, foundResources),
+                new Analysis(analyzers),
+                new Log(display, writer, foundResources),
+                new StepIncrement()
+        );
+    }
+
+    public void simulate() {
+
         do {
             for (Phase phase : phases) {
                 phase.perform(context);

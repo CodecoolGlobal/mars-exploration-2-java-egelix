@@ -19,16 +19,22 @@ public class Context {
     private Set<Coordinate> coordinatesAroundRoverSight;
     private HashMap<Coordinate, String> scannedCoordinates;
 
-    public Context(int timeout, String[][] map, Coordinate landing, Rover rover, Optional<Outcome> outcome) {
+    private final SuccessCondition successCondition;
+
+    public Context(int timeout, String[][] map, Coordinate landing, Rover rover, Optional<Outcome> outcome, SuccessCondition successCondition) {
         this.timeout = timeout;
         this.map = map;
         this.landing = landing;
         this.rover = rover;
         this.outcome = outcome;
+        this.successCondition = successCondition;
     }
 
     public int getTimeout() {
         return timeout;
+    }
+    public SuccessCondition getSuccessCondition() {
+        return successCondition;
     }
 
     public String[][] getMap() {
