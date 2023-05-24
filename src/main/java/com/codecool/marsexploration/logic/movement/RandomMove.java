@@ -2,11 +2,13 @@ package com.codecool.marsexploration.logic.movement;
 
 import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.Coordinate;
+import com.codecool.marsexploration.data.Outcome;
 import com.codecool.marsexploration.data.Symbol;
 import com.codecool.marsexploration.ui.Display;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class RandomMove implements Move {
@@ -42,6 +44,7 @@ public class RandomMove implements Move {
             context.getRover().addCoordinatesTracker(randomEmptyField);
         } else {
             display.errorMessage("No more empty next coordinate");
+            context.setOutcome(Optional.of(Outcome.ROVER_CANT_MOVE));
         }
     }
 
