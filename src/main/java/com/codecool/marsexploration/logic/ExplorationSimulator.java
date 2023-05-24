@@ -24,8 +24,8 @@ public class ExplorationSimulator {
     private final List<Phase> phases = List.of(
             new Scan(coordinateCreator),
             new Analysis(analyzers),
-            new Log(display, writer),
             new Movement(),
+            new Log(display, writer),
             new StepIncrement()
     );
 
