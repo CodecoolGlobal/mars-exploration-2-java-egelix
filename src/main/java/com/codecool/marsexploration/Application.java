@@ -2,6 +2,7 @@ package com.codecool.marsexploration;
 
 import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.SimulationInput;
+import com.codecool.marsexploration.data.SuccessCondition;
 import com.codecool.marsexploration.logic.ExplorationSimulator;
 
 public class Application {
@@ -11,7 +12,8 @@ public class Application {
                 "src/main/resources/exploration-1.map",
                 new Coordinate(12, 12),
                 100,
-                "src/main/resources/exploration-1.log");
+                "src/main/resources/exploration-1.log",
+                new SuccessCondition(5,5));
         simulator.simulate(input);
     }
 }
