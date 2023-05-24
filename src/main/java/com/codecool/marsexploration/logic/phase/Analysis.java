@@ -18,10 +18,12 @@ public class Analysis implements Phase {
 
     @Override
     public void perform(Context context) {
-        analyzers.stream()
+        Optional<Optional<Outcome>> optional = analyzers.stream()
                 .map(analyzer -> analyzer.analyze(context))
-                .filter(optional -> optional.isPresent())
-                .findFirst()
-                .stream().peek(optional -> context.setOutcome(optional));
+                .filter(opt -> opt.isPresent())
+                .findFirst();
+        if (optional.isPresent()) {
+            context.setOutcome(optional.get());
+        }
     }
 }
