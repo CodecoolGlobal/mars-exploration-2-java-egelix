@@ -10,7 +10,7 @@ import com.codecool.marsexploration.utility.ContextGenerator;
 public class Application {
     public static void main(String[] args) {
         SimulationInput input = new SimulationInput(
-                "src/main/resources/exploration-1.map",
+                "/exploration-1.map",
                 new Coordinate(12, 12),
                 100,
                 "src/main/resources/exploration-1.log",
