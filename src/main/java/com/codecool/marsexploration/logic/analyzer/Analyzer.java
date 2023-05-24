@@ -6,5 +6,5 @@ import com.codecool.marsexploration.data.Outcome;
 import java.util.Optional;
 
 public interface Analyzer {
-    Optional<Outcome> analyze();
+    Optional<Outcome> analyze(Context context);
 }
