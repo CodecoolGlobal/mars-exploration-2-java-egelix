@@ -7,4 +7,6 @@ import java.util.Set;
 
 public interface Move {
     void move(String[][] map, Coordinate landing, Set<Coordinate> scannedFields, Rover rover);
+
+    String getName();
 }
