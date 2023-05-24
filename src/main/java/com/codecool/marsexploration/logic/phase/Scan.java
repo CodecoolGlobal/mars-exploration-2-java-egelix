@@ -22,6 +22,7 @@ public class Scan implements Phase {
 
     @Override
     public void perform(Context context) {
+        //ToDo add to Map Coordinate String all Scaned Fields
         Coordinate currentRoverPosition = context.getRover().getPosition();
         String[][] map = context.getMap();
         Set<Coordinate> nextMoveCoordinates = coordinateCreator.aroundRover(currentRoverPosition, map.length, 1);
@@ -62,7 +63,6 @@ public class Scan implements Phase {
     private void updateFoundResources(Coordinate coordinate, String symbol) {
         for (FoundResource foundResource : foundResources) {
             if (symbol.equals(foundResource.getSymbol())) {
-                foundResource.setAmount(foundResource.getAmount() + 1);
                 foundResource.addCoordinate(coordinate);
             }
         }

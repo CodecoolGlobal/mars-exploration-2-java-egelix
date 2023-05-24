@@ -25,8 +25,8 @@ public class ExplorationSimulator {
     private final Writer writer = new Writer();
     private final Move chosenMove = new RandomMove();
     private final Set<FoundResource> foundResources = new HashSet<>(List.of(
-            new FoundResource(Symbol.MINERAL.getSymbol(), 0, new HashSet<>()),
-            new FoundResource(Symbol.WATER.getSymbol(), 0, new HashSet<>())
+            new FoundResource(Symbol.MINERAL.getSymbol(), new HashSet<>()),
+            new FoundResource(Symbol.WATER.getSymbol(), new HashSet<>())
     ));
     private final List<Analyzer> analyzers;
     private final List<Phase> phases;

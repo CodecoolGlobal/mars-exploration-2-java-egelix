@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 public class RandomMove implements Move {
+    private final String name = "Random Movement";
     private Coordinate lastVisitedCoordinate;
     private Set<Coordinate> visitedCoordinates = new HashSet<>();
 
@@ -36,5 +37,9 @@ public class RandomMove implements Move {
         } else {
             rover.setPosition(lastVisitedCoordinate);
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }

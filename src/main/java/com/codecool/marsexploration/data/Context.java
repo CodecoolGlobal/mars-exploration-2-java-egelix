@@ -3,7 +3,6 @@ package com.codecool.marsexploration.data;
 import com.codecool.marsexploration.data.rover.Rover;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -14,7 +13,6 @@ public class Context {
     private final Rover rover;
     private int stepNumber;
     private Optional<Outcome> outcome;
-    private List<LogFile> logFile;
     private Set<Coordinate> nextMoveCoordinates;
     private Set<Coordinate> coordinatesAroundRoverSight;
     private HashMap<Coordinate, String> scannedCoordinates;
@@ -65,14 +63,6 @@ public class Context {
         this.outcome = outcome;
     }
 
-    public List<LogFile> getLogFile() {
-        return logFile;
-    }
-
-    public void setLogFile(List<LogFile> logFile) {
-        this.logFile = logFile;
-    }
-
     public Set<Coordinate> getNextMoveCoordinates() {
         return nextMoveCoordinates;
     }
@@ -91,5 +81,10 @@ public class Context {
     public HashMap<Coordinate, String> getScannedCoordinates() {
         return scannedCoordinates;
     }
-    public addToScannedCoordinates()
+    public void putScannedCoordinates(Set<Coordinate> coordinates) {
+        for(Coordinate coordinate: coordinates) {
+            String symbol = map[coordinate.y()][coordinate.x()];
+            scannedCoordinates.put(coordinate, symbol);
+        }
+    }
 }

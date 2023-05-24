@@ -6,25 +6,15 @@ import java.util.Set;
 
 public class FoundResource {
     private final String symbol;
-    private int amount;
     private Set<Coordinate> coordinate;
 
-    public FoundResource(String symbol, int amount, Set<Coordinate> coordinate) {
+    public FoundResource(String symbol, Set<Coordinate> coordinate) {
         this.symbol = symbol;
-        this.amount = amount;
         this.coordinate = coordinate;
     }
 
     public String getSymbol() {
         return symbol;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
     }
 
     public Set<Coordinate> getCoordinate() {
