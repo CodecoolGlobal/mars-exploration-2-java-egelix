@@ -8,13 +8,8 @@ import java.util.Objects;
 import java.util.TreeMap;
 
 public class ReadFolder {
-    private final Display display;
 
-    public ReadFolder(Display display) {
-        this.display = display;
-    }
-
-    public Map<Integer, String> fromPath(String path, String searchFileExtension) {
+    public Map<Integer, String> fromPath(String path, String searchFileExtension, Display display) {
         Map<Integer, String> files = new TreeMap<>();
         File folder = new File(path);
         int countValidFiles = 0;
