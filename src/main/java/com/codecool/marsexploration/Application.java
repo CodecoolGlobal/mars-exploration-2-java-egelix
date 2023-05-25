@@ -19,10 +19,10 @@ public class Application {
                 "/exploration-1.map",
                 100,
                 "src/main/resources/exploration-1.log",
-                new SuccessCondition(1, 1, 50, 50));
+                new SuccessCondition(5, 5, 50, 50));
         ContextGenerator contextGenerator = new ContextGenerator(display, random);
         Context context = contextGenerator.generate(input);
-        place.randomAlien(context, 5);
+        place.randomAlien(context, 0);
         display.doppleArrayMap(context.getMap(), "Read Map With Alien");
         ExplorationSimulator simulator = new ExplorationSimulator(context);
         simulator.simulate();

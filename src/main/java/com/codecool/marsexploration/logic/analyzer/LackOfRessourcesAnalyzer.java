@@ -7,7 +7,7 @@ import com.codecool.marsexploration.data.Symbol;
 
 import java.util.Optional;
 
-public class LackOfRessourcesAnalyzer implements Analyzer{
+public class LackOfRessourcesAnalyzer implements Analyzer {
     @Override
     public Optional<Outcome> analyze(Context context) {
         if (stepsOverConditionThreshold(context) &&
@@ -30,11 +30,10 @@ public class LackOfRessourcesAnalyzer implements Analyzer{
     }
 
     private static int getAmountFoundResources(Context context) {
-        int amountFoundResources = (int) context.getScannedCoordinates().entrySet().stream()
+        return (int) context.getScannedCoordinates().entrySet().stream()
                 .filter(entry ->
-                        entry.getValue() == Symbol.WATER.getSymbol() ||
-                        entry.getValue() == Symbol.MINERAL.getSymbol())
+                        entry.getValue().equals(Symbol.WATER.getSymbol()) ||
+                                entry.getValue().equals(Symbol.MINERAL.getSymbol()))
                 .count();
-        return amountFoundResources;
     }
 }
