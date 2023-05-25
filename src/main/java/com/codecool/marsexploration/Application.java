@@ -18,7 +18,7 @@ public class Application {
         Random random = new Random();
         Place place = new Place(random);
         ReadFolder readFolder = new ReadFolder(display);
-        Map<Integer, String> getPlanetMapName = readFolder.fromPath("src/main/resources");
+        Map<Integer, String> getPlanetMapName = readFolder.fromPath("src/main/resources", ".map");
         String planetMapPath = "/" + getPlanetMapName.get(random.nextInt(getPlanetMapName.size()));
         SimulationInput input = new SimulationInput(
                 planetMapPath,
