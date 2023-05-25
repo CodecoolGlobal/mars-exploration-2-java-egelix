@@ -7,10 +7,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Writer {
+public class LogWriter {
     private final File newFile;
 
-    public Writer(File newFile) {
+    public LogWriter(File newFile) {
         this.newFile = newFile;
     }
 
