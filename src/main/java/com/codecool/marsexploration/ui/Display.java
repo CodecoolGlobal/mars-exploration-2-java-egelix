@@ -48,10 +48,6 @@ public class Display {
         System.out.println("-".repeat(displayLength));
     }
 
-    public void printEndLines() {
-        System.out.println("✧".repeat(displayLength));
-    }
-
     public void errorMessage(String message) {
         System.out.println(ANSI_RED + message + ANSI_DEFAULT);
     }
