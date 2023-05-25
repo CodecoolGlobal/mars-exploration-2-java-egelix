@@ -17,16 +17,14 @@ public class FolderFileCreator {
     }
 
     public File getDestination() {
-        String path = createFolder();
+        String path = "src/main/resources/output/" + createDatePartOfFileName();
+        createFolder(path);
         return createFile(path);
     }
 
-    private String createFolder() {
-        //Best practice wäre statt / oder \ und String, Path mit ??? zu nutzen. Damit der Code für Windows und Linux/Mac geht.
-        String path = "src/main/resources/output/" + createDatePartOfFileName();
+    private void createFolder(String path) {
         File folder = new File(path);
         folder.mkdir();
-        return path;
     }
 
     private File createFile(String path) {
