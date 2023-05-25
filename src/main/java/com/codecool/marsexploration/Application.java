@@ -31,7 +31,7 @@ public class Application {
         ContextGenerator contextGenerator = new ContextGenerator(display, random);
         Context context = contextGenerator.generate(input);
         place.randomAlien(context, 0);
-        display.doppleArrayMap(context.getMap(), "Read Map With Alien");
+        display.doubleArrayMap(context.getMap(), "Read Map With Alien");
         FolderFileCreator folderFileCreator = new FolderFileCreator(display, readFolder);
         File newFile = folderFileCreator.getDestination();
         Writer writer = new Writer(newFile);
