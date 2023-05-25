@@ -27,10 +27,10 @@ public class Application {
                 planetMapPath,
                 100,
                 "src/main/resources/exploration-1.log",
-                new SuccessCondition(5, 5, 50, 50));
+                new SuccessCondition(2, 1, 50, 50));
         ContextGenerator contextGenerator = new ContextGenerator(display, random);
         Context context = contextGenerator.generate(input);
-        place.randomAlien(context, 0);
+        place.randomAlien(context, 3);
         display.doubleArrayMap(context.getMap(), "Read Map With Alien");
         FolderFileCreator folderFileCreator = new FolderFileCreator(display, readFolder);
         File newFile = folderFileCreator.getDestination();
