@@ -8,18 +8,13 @@ import java.util.Objects;
 import java.util.TreeMap;
 
 public class ReadFolder {
-    private final Display display;
 
-    public ReadFolder(Display display) {
-        this.display = display;
-    }
-
-    public Map<Integer, String> fromPath(String path) {
+    public Map<Integer, String> fromPath(String path, String searchFileExtension, Display display) {
         Map<Integer, String> files = new TreeMap<>();
         File folder = new File(path);
-        int countValidFiles = 1;
+        int countValidFiles = 0;
         for (File file : Objects.requireNonNull(folder.listFiles())) {
-            if (file.isFile() && file.getName().contains(".map")) {
+            if (file.isFile() && file.getName().contains(searchFileExtension)) {
                 files.put(countValidFiles, file.getName());
                 countValidFiles++;
             }

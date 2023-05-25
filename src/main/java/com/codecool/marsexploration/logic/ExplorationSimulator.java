@@ -10,8 +10,8 @@ import java.util.List;
 
 public class ExplorationSimulator {
     private final CoordinateCreator coordinateCreator = new CoordinateCreator();
-    private final Display display = new Display();
-    private final Writer writer = new Writer();
+    private final Display display;
+    private final Writer writer;
     private final Context context;
     private final List<Analyzer> analyzers = List.of(
             new AlienAnalyzer(),
@@ -19,20 +19,21 @@ public class ExplorationSimulator {
             new LackOfRessourcesAnalyzer(),
             new TimeoutAnalyzer()
     );
-    private final List<Phase> phases = List.of(
-            new Scan(coordinateCreator),
-            new Analysis(analyzers),
-            new Movement(),
-            new Log(display, writer),
-            new StepIncrement()
-    );
 
-    public ExplorationSimulator(Context context) {
+    public ExplorationSimulator(Display display, Writer writer, Context context) {
+        this.display = display;
+        this.writer = writer;
         this.context = context;
     }
 
     public void simulate() {
-
+        List<Phase> phases = List.of(
+                new Scan(coordinateCreator),
+                new Analysis(analyzers),
+                new Movement(),
+                new Log(display, writer),
+                new StepIncrement()
+        );
         do {
             for (Phase phase : phases) {
                 phase.perform(context);

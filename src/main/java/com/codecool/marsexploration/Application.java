@@ -3,33 +3,45 @@ package com.codecool.marsexploration;
 import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.SimulationInput;
 import com.codecool.marsexploration.data.SuccessCondition;
+import com.codecool.marsexploration.data.UserInput;
+import com.codecool.marsexploration.io.FolderFileCreator;
 import com.codecool.marsexploration.io.ReadFolder;
+import com.codecool.marsexploration.io.Writer;
 import com.codecool.marsexploration.logic.ExplorationSimulator;
 import com.codecool.marsexploration.logic.Place;
 import com.codecool.marsexploration.ui.Display;
+import com.codecool.marsexploration.ui.Input;
 import com.codecool.marsexploration.utility.ContextGenerator;
+import com.codecool.marsexploration.utility.UserInputGenerator;
 
+import java.io.File;
 import java.util.Map;
 import java.util.Random;
 
 public class Application {
     public static void main(String[] args) {
         Display display = new Display();
+        Input input = new Input(display);
         Random random = new Random();
         Place place = new Place(random);
-        ReadFolder readFolder = new ReadFolder(display);
-        Map<Integer, String> getPlanetMapName = readFolder.fromPath("src/main/resources");
+        ReadFolder readFolder = new ReadFolder();
+        Map<Integer, String> getPlanetMapName = readFolder.fromPath("src/main/resources", ".map", display);
         String planetMapPath = "/" + getPlanetMapName.get(random.nextInt(getPlanetMapName.size()));
-        SimulationInput input = new SimulationInput(
+        UserInputGenerator userInputGenerator = new UserInputGenerator(display, input);
+        UserInput userInput = userInputGenerator.getInputs();
+        SimulationInput simulationInput = new SimulationInput(
                 planetMapPath,
-                100,
+                userInput.timeout(),
                 "src/main/resources/exploration-1.log",
-                new SuccessCondition(5, 5, 50, 50));
-        ContextGenerator contextGenerator = new ContextGenerator(display, random);
-        Context context = contextGenerator.generate(input);
-        place.randomAlien(context, 0);
-        display.doppleArrayMap(context.getMap(), "Read Map With Alien");
-        ExplorationSimulator simulator = new ExplorationSimulator(context);
+                new SuccessCondition(userInput.neededMinerals(), userInput.neededWater(), 50, 50));
+        ContextGenerator contextGenerator = new ContextGenerator(display, random, userInput);
+        Context context = contextGenerator.generate(simulationInput);
+        place.randomAlien(context, 2);
+        display.doubleArrayMap(context.getMap(), "Read Map With Alien");
+        FolderFileCreator folderFileCreator = new FolderFileCreator(display, readFolder);
+        File newFile = folderFileCreator.getDestination();
+        Writer writer = new Writer(newFile);
+        ExplorationSimulator simulator = new ExplorationSimulator(display, writer, context);
         simulator.simulate();
     }
 }

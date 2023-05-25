@@ -34,7 +34,9 @@ public class RandomMove implements Move {
                 emptyFields.add(nextCoordinate);
             }
         }
-        emptyFields.removeAll(context.getRover().getCoordinatesTracker());
+        if (emptyFields.stream().anyMatch(coordinate -> !context.getRover().getCoordinatesTracker().contains(coordinate))) {
+            emptyFields.removeAll(context.getRover().getCoordinatesTracker());
+        }
     }
 
     private void moveToNextRandomEmptyCoordinate(Context context, List<Coordinate> emptyFields) {
@@ -42,7 +44,7 @@ public class RandomMove implements Move {
             Coordinate randomEmptyField = emptyFields.get(random.nextInt(emptyFields.size()));
             context.getRover().setPosition(randomEmptyField);
             context.getRover().addCoordinatesTracker(randomEmptyField);
-        } else if(context.getOutcome().isEmpty()){
+        } else if (context.getOutcome().isEmpty()) {
             display.errorMessage("No more empty next coordinate");
             context.setOutcome(Optional.of(Outcome.ROVER_CANT_MOVE));
         }

@@ -1,9 +1,6 @@
 package com.codecool.marsexploration.utility;
 
-import com.codecool.marsexploration.data.Context;
-import com.codecool.marsexploration.data.Coordinate;
-import com.codecool.marsexploration.data.SimulationInput;
-import com.codecool.marsexploration.data.Rover;
+import com.codecool.marsexploration.data.*;
 import com.codecool.marsexploration.io.Reader;
 import com.codecool.marsexploration.logic.movement.RandomMove;
 import com.codecool.marsexploration.ui.Display;
@@ -15,10 +12,12 @@ import java.util.Random;
 public class ContextGenerator {
     private final Display display;
     private final Random random;
+    private final UserInput userInput;
 
-    public ContextGenerator(Display display, Random random) {
+    public ContextGenerator(Display display, Random random, UserInput userInput) {
         this.display = display;
         this.random = random;
+        this.userInput = userInput;
     }
 
     public Context generate(SimulationInput input) {
@@ -30,7 +29,7 @@ public class ContextGenerator {
             throw new RuntimeException(e);
         }
         Coordinate landing = new Coordinate(random.nextInt(map.length), random.nextInt(map.length));
-        Rover rover = new Rover(1, landing, random.nextInt(1, 3), new RandomMove(display, random));
+        Rover rover = new Rover(1, landing, userInput.roverSight(), new RandomMove(display, random));
         return new Context(
                 input.timeout(),
                 map,
