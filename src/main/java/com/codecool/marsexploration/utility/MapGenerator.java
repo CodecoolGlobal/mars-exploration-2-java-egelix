@@ -3,7 +3,6 @@ package com.codecool.marsexploration.utility;
 import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.Coordinate;
 
-import java.lang.reflect.Array;
 import java.util.Map;
 
 public class MapGenerator {
