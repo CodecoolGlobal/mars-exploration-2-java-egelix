@@ -1,14 +1,14 @@
 package com.codecool.marsexploration.logic.phase;
 
 import com.codecool.marsexploration.data.Context;
-import com.codecool.marsexploration.io.Writer;
+import com.codecool.marsexploration.io.LogWriter;
 import com.codecool.marsexploration.ui.Display;
 
 public class Log implements Phase {
     private final Display display;
-    private final Writer writer;
+    private final LogWriter writer;
 
-    public Log(Display display, Writer writer) {
+    public Log(Display display, LogWriter writer) {
         this.display = display;
         this.writer = writer;
     }

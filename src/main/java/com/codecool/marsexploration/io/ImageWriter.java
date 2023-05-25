@@ -1,2 +1,4 @@
-package com.codecool.marsexploration.io;public class ImageWriter {
+package com.codecool.marsexploration.io;
+
+public class ImageWriter {
 }

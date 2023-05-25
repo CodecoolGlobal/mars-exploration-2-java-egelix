@@ -6,7 +6,7 @@ import com.codecool.marsexploration.data.SuccessCondition;
 import com.codecool.marsexploration.data.UserInput;
 import com.codecool.marsexploration.io.FolderFileCreator;
 import com.codecool.marsexploration.io.ReadFolder;
-import com.codecool.marsexploration.io.Writer;
+import com.codecool.marsexploration.io.LogWriter;
 import com.codecool.marsexploration.logic.ExplorationSimulator;
 import com.codecool.marsexploration.logic.Place;
 import com.codecool.marsexploration.ui.Display;
@@ -40,7 +40,7 @@ public class Application {
         display.doubleArrayMap(context.getMap(), "Read Map With Alien");
         FolderFileCreator folderFileCreator = new FolderFileCreator(display, readFolder);
         File newFile = folderFileCreator.getDestination();
-        Writer writer = new Writer(newFile);
+        LogWriter writer = new LogWriter(newFile);
         ExplorationSimulator simulator = new ExplorationSimulator(display, writer, context);
         simulator.simulate();
     }

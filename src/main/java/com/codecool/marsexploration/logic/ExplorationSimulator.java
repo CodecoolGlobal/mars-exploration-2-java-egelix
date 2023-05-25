@@ -1,7 +1,7 @@
 package com.codecool.marsexploration.logic;
 
 import com.codecool.marsexploration.data.Context;
-import com.codecool.marsexploration.io.Writer;
+import com.codecool.marsexploration.io.LogWriter;
 import com.codecool.marsexploration.logic.analyzer.*;
 import com.codecool.marsexploration.logic.phase.*;
 import com.codecool.marsexploration.ui.Display;
@@ -11,7 +11,7 @@ import java.util.List;
 public class ExplorationSimulator {
     private final CoordinateCreator coordinateCreator = new CoordinateCreator();
     private final Display display;
-    private final Writer writer;
+    private final LogWriter writer;
     private final Context context;
     private final List<Analyzer> analyzers = List.of(
             new AlienAnalyzer(),
@@ -20,7 +20,7 @@ public class ExplorationSimulator {
             new TimeoutAnalyzer()
     );
 
-    public ExplorationSimulator(Display display, Writer writer, Context context) {
+    public ExplorationSimulator(Display display, LogWriter writer, Context context) {
         this.display = display;
         this.writer = writer;
         this.context = context;
