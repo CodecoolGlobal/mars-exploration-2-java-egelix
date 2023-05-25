@@ -3,12 +3,15 @@ package com.codecool.marsexploration;
 import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.SimulationInput;
 import com.codecool.marsexploration.data.SuccessCondition;
+import com.codecool.marsexploration.io.FolderFileCreator;
 import com.codecool.marsexploration.io.ReadFolder;
+import com.codecool.marsexploration.io.Writer;
 import com.codecool.marsexploration.logic.ExplorationSimulator;
 import com.codecool.marsexploration.logic.Place;
 import com.codecool.marsexploration.ui.Display;
 import com.codecool.marsexploration.utility.ContextGenerator;
 
+import java.io.File;
 import java.util.Map;
 import java.util.Random;
 
@@ -17,8 +20,8 @@ public class Application {
         Display display = new Display();
         Random random = new Random();
         Place place = new Place(random);
-        ReadFolder readFolder = new ReadFolder(display);
-        Map<Integer, String> getPlanetMapName = readFolder.fromPath("src/main/resources", ".map");
+        ReadFolder readFolder = new ReadFolder();
+        Map<Integer, String> getPlanetMapName = readFolder.fromPath("src/main/resources", ".map", display);
         String planetMapPath = "/" + getPlanetMapName.get(random.nextInt(getPlanetMapName.size()));
         SimulationInput input = new SimulationInput(
                 planetMapPath,
@@ -29,7 +32,10 @@ public class Application {
         Context context = contextGenerator.generate(input);
         place.randomAlien(context, 0);
         display.doppleArrayMap(context.getMap(), "Read Map With Alien");
-        ExplorationSimulator simulator = new ExplorationSimulator(context);
+        FolderFileCreator folderFileCreator = new FolderFileCreator(display, readFolder);
+        File newFile = folderFileCreator.getDestination();
+        Writer writer = new Writer(newFile);
+        ExplorationSimulator simulator = new ExplorationSimulator(display, writer, context);
         simulator.simulate();
     }
 }
