@@ -32,12 +32,8 @@ public class Writer {
             return "STEP " + context.getStepNumber() +
                     "; EVENT " + context.getRover().getMove().getName() +
                     "; UNIT rover-" + context.getRover().getId() +
-                    ", POSITION " + context.getRover().getPosition().toString() + "\n";
-                    /*
                     "; POSITION [" + context.getRover().getPosition().y() +
                     "," + context.getRover().getPosition().x() + "]\n";
-                     */
-
         } else {
             return "STEP " + context.getStepNumber() +
                     "; EVENT outcome" +
