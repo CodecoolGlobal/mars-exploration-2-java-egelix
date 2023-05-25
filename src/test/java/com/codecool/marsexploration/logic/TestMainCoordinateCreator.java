@@ -1,11 +1,10 @@
-package com.codecool.marsexploration;
+package com.codecool.marsexploration.logic;
 
 import com.codecool.marsexploration.data.Coordinate;
-import com.codecool.marsexploration.logic.CoordinateCreator;
 
 import java.util.Set;
 
-public class TestMain {
+public class TestMainCoordinateCreator {
 
     public static void main(String[] args) {
         CoordinateCreator coordinateCreator = new CoordinateCreator();
