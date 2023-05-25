@@ -39,7 +39,8 @@ public class Writer {
         } else {
             return "STEP " + context.getStepNumber() +
                     "; EVENT outcome" +
-                    "; OUTCOME " + context.getOutcome();
+                    "outcome; OUTCOME " + context.getOutcome().get();
+
         }
     }
 }
