@@ -14,9 +14,9 @@ public class ExplorationSimulator {
     private final Writer writer = new Writer();
     private final Context context;
     private final List<Analyzer> analyzers = List.of(
+            new AlienAnalyzer(),
             new SuccessAnalyzer(),
             new LackOfRessourcesAnalyzer(),
-            new AlienAnalyzer(),
             new TimeoutAnalyzer()
     );
     private final List<Phase> phases = List.of(

@@ -24,10 +24,6 @@ class TimeoutAnalyzerTest {
                 Arguments.of(0, null)
         );
     }
-    public static Context prepareContextSteps(Context context, int steps) {
-        context.setStepNumber(steps);
-        return context;
-    }
 
     @ParameterizedTest
     @MethodSource("dataForAnalyzeTest")
