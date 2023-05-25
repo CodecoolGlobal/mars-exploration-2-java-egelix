@@ -34,7 +34,9 @@ public class RandomMove implements Move {
                 emptyFields.add(nextCoordinate);
             }
         }
-        emptyFields.removeAll(context.getRover().getCoordinatesTracker());
+        if (emptyFields.stream().anyMatch(coordinate -> !context.getRover().getCoordinatesTracker().contains(coordinate))) {
+            emptyFields.removeAll(context.getRover().getCoordinatesTracker());
+        }
     }
 
     private void moveToNextRandomEmptyCoordinate(Context context, List<Coordinate> emptyFields) {

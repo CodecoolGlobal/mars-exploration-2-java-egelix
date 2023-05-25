@@ -7,7 +7,7 @@ public class Display {
     private static final String ANSI_DEFAULT = "\u001B[0m";
     private final int displayLength = 72;
 
-    public void doppleArrayMap(String[][] map, String message) {
+    public void doubleArrayMap(String[][] map, String message) {
         printTitle(message);
         for (String[] yString : map) {
             System.out.println(Arrays.toString(yString));
