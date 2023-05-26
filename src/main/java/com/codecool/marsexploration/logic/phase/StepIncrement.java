@@ -5,6 +5,8 @@ import com.codecool.marsexploration.data.Context;
 public class StepIncrement implements Phase{
     @Override
     public void perform(Context context) {
-        context.setStepNumber(context.getStepNumber() + 1);
+        int current = context.getStepNumber();
+        int next = current + 1;
+        context.setStepNumber(next);
     }
 }

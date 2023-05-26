@@ -9,7 +9,11 @@ public class Display {
     private static final String ANSI_GREEN = "\u001B[32m";
     private static final String ANSI_GREEN_BOLD = "\u001B[1;32m";
     private static final String ANSI_DEFAULT = "\u001B[0m";
-    private final int displayLength = 72;
+    private final int displayLength ;
+
+    public Display(int displayLength) {
+        this.displayLength = displayLength;
+    }
 
     public void doubleArrayMap(String[][] map, String message) {
         printTitle(message);

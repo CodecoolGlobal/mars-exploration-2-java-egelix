@@ -13,15 +13,16 @@ public class ContextGenerator {
     private final Display display;
     private final Random random;
     private final UserInput userInput;
+    private final Reader reader;
 
-    public ContextGenerator(Display display, Random random, UserInput userInput) {
+    public ContextGenerator(Display display, Random random, UserInput userInput, Reader reader) {
         this.display = display;
         this.random = random;
         this.userInput = userInput;
+        this.reader = reader;
     }
 
     public Context generate(SimulationInput input) {
-        Reader reader = new Reader();
         String[][] map;
         try {
             map = reader.mapReader(input.mapPath());

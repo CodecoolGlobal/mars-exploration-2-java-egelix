@@ -2,41 +2,22 @@ package com.codecool.marsexploration.logic;
 
 import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.io.ImageGenerator;
-import com.codecool.marsexploration.io.LogWriter;
-import com.codecool.marsexploration.logic.analyzer.*;
-import com.codecool.marsexploration.logic.phase.*;
-import com.codecool.marsexploration.ui.Display;
+import com.codecool.marsexploration.logic.phase.Phase;
 
 import java.util.List;
 
 public class ExplorationSimulator {
-    private final CoordinateCreator coordinateCreator = new CoordinateCreator();
-    private final Display display;
-    private final LogWriter writer;
     private final Context context;
-    private final List<Analyzer> analyzers = List.of(
-            new AlienAnalyzer(),
-            new SuccessAnalyzer(),
-            new LackOfRessourcesAnalyzer(),
-            new TimeoutAnalyzer()
-    );
-    ImageGenerator imageGenerator;
+    private final List<Phase> phases;
+    private final ImageGenerator imageGenerator;
 
-    public ExplorationSimulator(Display display, LogWriter writer, Context context, ImageGenerator imageGenerator) {
-        this.display = display;
-        this.writer = writer;
+    public ExplorationSimulator(Context context, List<Phase> phases, ImageGenerator imageGenerator) {
         this.context = context;
+        this.phases = phases;
         this.imageGenerator = imageGenerator;
     }
 
     public void simulate() {
-        List<Phase> phases = List.of(
-                new Scan(coordinateCreator),
-                new Analysis(analyzers),
-                new Movement(),
-                new Log(display, writer),
-                new StepIncrement()
-        );
         do {
             for (Phase phase : phases) {
                 phase.perform(context);

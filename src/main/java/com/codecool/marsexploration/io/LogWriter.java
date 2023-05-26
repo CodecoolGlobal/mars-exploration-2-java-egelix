@@ -23,13 +23,13 @@ public class LogWriter {
     }
 
     private void doWrite(Context context) throws IOException {
-        String logStr = getLogStr(context);
+        String logEntry = buildLogEntry(context);
         BufferedWriter writer = new BufferedWriter(new FileWriter(newFile, true));
-        writer.write(logStr);
+        writer.write(logEntry);
         writer.close();
     }
 
-    public String getLogStr(Context context) {
+    public String buildLogEntry(Context context) {
         if (context.getOutcome().isEmpty()) {
             return "STEP " + context.getStepNumber() +
                     "; EVENT " + context.getRover().getMove().getName() +

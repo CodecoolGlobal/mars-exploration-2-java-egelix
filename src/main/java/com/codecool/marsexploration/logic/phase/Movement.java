@@ -12,5 +12,6 @@ public class Movement implements Phase {
         //TODO: implement logic for switching between movement approach/return movement
         Move chosenMove = rover.getMove();
         chosenMove.move(context);
+        // rover.setPosition(next);
     }
 }

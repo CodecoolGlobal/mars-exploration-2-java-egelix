@@ -16,9 +16,9 @@ public class Place {
     public void randomAlien(Context context, int amount) {
         String[][] map = context.getMap();
         for (int i = 0; i < amount; i++) {
-        Coordinate randomCoordinate = new Coordinate(random.nextInt(map.length), random.nextInt(map.length));
-        String randomMapSymbol = map[randomCoordinate.y()][randomCoordinate.x()];
-        boolean isFieldEmpty = randomMapSymbol.equals(Symbol.EMPTY.getSymbol());
+            Coordinate randomCoordinate = new Coordinate(random.nextInt(map.length), random.nextInt(map.length));
+            String randomMapSymbol = map[randomCoordinate.y()][randomCoordinate.x()];
+            boolean isFieldEmpty = randomMapSymbol.equals(Symbol.EMPTY.getSymbol());
             do {
                 if (isFieldEmpty) {
                     map[randomCoordinate.y()][randomCoordinate.x()] = Symbol.ALIEN.getSymbol();

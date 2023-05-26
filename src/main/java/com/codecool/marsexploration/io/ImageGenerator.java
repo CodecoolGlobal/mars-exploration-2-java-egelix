@@ -8,9 +8,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class ImageGenerator {
-    public int counter = 0;
-    MapGenerator mapGenerator;
-    ImageWriter imageWriter;
+    private final MapGenerator mapGenerator;
+    private final ImageWriter imageWriter;
+    private int counter = 0;
 
     public ImageGenerator(Context context) {
         this.mapGenerator = new MapGenerator(context);
