@@ -5,6 +5,7 @@ import com.codecool.marsexploration.data.SimulationInput;
 import com.codecool.marsexploration.data.SuccessCondition;
 import com.codecool.marsexploration.data.UserInput;
 import com.codecool.marsexploration.io.FolderFileCreator;
+import com.codecool.marsexploration.io.ImageGenerator;
 import com.codecool.marsexploration.io.ReadFolder;
 import com.codecool.marsexploration.io.LogWriter;
 import com.codecool.marsexploration.logic.ExplorationSimulator;
@@ -41,7 +42,8 @@ public class Application {
         FolderFileCreator folderFileCreator = new FolderFileCreator(display, readFolder);
         File newFile = folderFileCreator.getDestination();
         LogWriter writer = new LogWriter(newFile);
-        ExplorationSimulator simulator = new ExplorationSimulator(display, writer, context);
+        ImageGenerator imageGenerator = new ImageGenerator(context);
+        ExplorationSimulator simulator = new ExplorationSimulator(display, writer, context, imageGenerator);
         simulator.simulate();
     }
 }
