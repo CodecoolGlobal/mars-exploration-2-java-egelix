@@ -29,6 +29,7 @@ public class ContextGenerator {
             throw new RuntimeException(e);
         }
         Coordinate landing = new Coordinate(random.nextInt(map.length), random.nextInt(map.length));
+        map[landing.y()][landing.x()] = Symbol.SPACE_SHIP.getSymbol();
         Rover rover = new Rover(1, landing, userInput.roverSight(), new RandomMove(display, random));
         return new Context(
                 input.timeout(),
