@@ -37,7 +37,7 @@ public class Application {
                 new SuccessCondition(userInput.neededMinerals(), userInput.neededWater(), 50, 50));
         ContextGenerator contextGenerator = new ContextGenerator(display, random, userInput);
         Context context = contextGenerator.generate(simulationInput);
-        place.randomAlien(context, 2);
+        place.randomAlien(context, userInput.amountAliens());
         display.doubleArrayMap(context.getMap(), "Read Map With Alien");
         FolderFileCreator folderFileCreator = new FolderFileCreator(display, readFolder);
         File newFile = folderFileCreator.getDestination();
