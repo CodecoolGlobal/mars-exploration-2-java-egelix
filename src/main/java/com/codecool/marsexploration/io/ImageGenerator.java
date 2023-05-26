@@ -1,13 +1,11 @@
 package com.codecool.marsexploration.io;
 
 import com.codecool.marsexploration.data.Context;
-import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.Symbol;
 import com.codecool.marsexploration.utility.MapGenerator;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Map;
 
 public class ImageGenerator {
     public int counter = 0;
@@ -52,7 +50,7 @@ public class ImageGenerator {
 
     private Color getColorForSymbol(String symbol) {
         if (symbol == "_") {
-            return new Color(255,255,255);
+            return new Color(255, 255, 255);
         } else if (symbol.equals(Symbol.MOUNTAIN.getSymbol())) {
             return new Color(135, 62, 35);
         } else if (symbol.equals(Symbol.PIT.getSymbol())) {
