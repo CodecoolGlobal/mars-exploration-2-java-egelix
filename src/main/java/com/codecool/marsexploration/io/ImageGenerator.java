@@ -49,7 +49,7 @@ public class ImageGenerator {
     }
 
     private Color getColorForSymbol(String symbol) {
-        if (symbol == "_") {
+        if (symbol.equals("_")) {
             return new Color(255, 255, 255);
         } else if (symbol.equals(Symbol.MOUNTAIN.getSymbol())) {
             return new Color(135, 62, 35);
@@ -67,7 +67,6 @@ public class ImageGenerator {
     }
 
     private BufferedImage getBlankImage(int size, int ratio) {
-        BufferedImage img = new BufferedImage(size * ratio, size * ratio, BufferedImage.TYPE_INT_RGB);
-        return img;
+        return new BufferedImage(size * ratio, size * ratio, BufferedImage.TYPE_INT_RGB);
     }
 }
