@@ -1,16 +1,13 @@
 package com.codecool.marsexploration.logic;
 
 import com.codecool.marsexploration.data.Context;
-import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.io.ImageGenerator;
 import com.codecool.marsexploration.io.LogWriter;
 import com.codecool.marsexploration.logic.analyzer.*;
 import com.codecool.marsexploration.logic.phase.*;
 import com.codecool.marsexploration.ui.Display;
 
-import java.awt.*;
 import java.util.List;
-import java.util.Map;
 
 public class ExplorationSimulator {
     private final CoordinateCreator coordinateCreator = new CoordinateCreator();
