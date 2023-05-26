@@ -67,10 +67,6 @@ public class Context {
         this.nextMoveCoordinates = nextMoveCoordinates;
     }
 
-    public Set<Coordinate> getCoordinatesAroundRoverSight() {
-        return coordinatesAroundRoverSight;
-    }
-
     public void setCoordinatesAroundRoverSight(Set<Coordinate> coordinatesAroundRoverSight) {
         this.coordinatesAroundRoverSight = coordinatesAroundRoverSight;
     }
