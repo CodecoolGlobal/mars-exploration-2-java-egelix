@@ -62,7 +62,7 @@ public class ImageGenerator {
         } else if (symbol.equals(Symbol.ALIEN.getSymbol())) {
             return new Color(23, 230, 78);
         } else if (symbol.equals(Symbol.SPACE_SHIP.getSymbol())) {
-            return new Color(255, 102, 102);
+            return new Color(255, 80, 80);
         } else {
             return new Color(226, 135, 67);
         }
