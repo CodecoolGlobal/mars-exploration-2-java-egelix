@@ -3,13 +3,13 @@ package com.codecool.marsexploration.ui;
 import java.util.Arrays;
 
 public class Display {
+    private static final String ANSI_DEFAULT = "\u001B[0m";
     private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_BLUE = "\u001B[34m";
     private static final String ANSI_BLUE_BOLD = "\u001B[1;34m";
     private static final String ANSI_GREEN = "\u001B[32m";
     private static final String ANSI_GREEN_BOLD = "\u001B[1;32m";
-    private static final String ANSI_DEFAULT = "\u001B[0m";
-    private final int displayLength ;
+    private final int displayLength;
 
     public Display(int displayLength) {
         this.displayLength = displayLength;
@@ -25,15 +25,16 @@ public class Display {
     public void printTitle(String title) {
         System.out.println();
         String fillWithSpace = " ".repeat((displayLength - title.length()) / 2);
-        System.out.println("✧".repeat(displayLength));
+        String repeatStarLines = (ANSI_GREEN_BOLD + "✧" + ANSI_DEFAULT).repeat(displayLength);
+        System.out.println(repeatStarLines);
         System.out.println(fillWithSpace + ANSI_GREEN_BOLD + title.toUpperCase() + ANSI_DEFAULT + fillWithSpace);
-        System.out.println("✧".repeat(displayLength));
+        System.out.println(repeatStarLines);
     }
 
     public void printSubtitle(String subtitle) {
         String fillWithSpace = " ".repeat((displayLength - subtitle.length()) / 2);
         System.out.println(fillWithSpace + ANSI_GREEN + subtitle.toUpperCase() + ANSI_DEFAULT + fillWithSpace);
-        System.out.println("✧".repeat(displayLength));
+        System.out.println((ANSI_GREEN + "✧" + ANSI_DEFAULT).repeat(displayLength));
     }
 
     public void inputRequirement(String requirement) {

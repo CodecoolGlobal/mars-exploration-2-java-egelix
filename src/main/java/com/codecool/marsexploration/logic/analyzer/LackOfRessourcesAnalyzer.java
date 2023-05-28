@@ -3,7 +3,7 @@ package com.codecool.marsexploration.logic.analyzer;
 import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.Outcome;
 import com.codecool.marsexploration.data.SuccessCondition;
-import com.codecool.marsexploration.data.Symbol;
+import com.codecool.marsexploration.data.symbol.Symbols;
 
 import java.util.Optional;
 
@@ -32,8 +32,8 @@ public class LackOfRessourcesAnalyzer implements Analyzer {
     private static int getAmountFoundResources(Context context) {
         return (int) context.getScannedCoordinates().entrySet().stream()
                 .filter(entry ->
-                        entry.getValue().equals(Symbol.WATER.getSymbol()) ||
-                                entry.getValue().equals(Symbol.MINERAL.getSymbol()))
+                        entry.getValue().equals(Symbols.WATER.getSymbol()) ||
+                                entry.getValue().equals(Symbols.MINERAL.getSymbol()))
                 .count();
     }
 }

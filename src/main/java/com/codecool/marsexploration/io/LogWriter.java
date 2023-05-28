@@ -38,8 +38,7 @@ public class LogWriter {
                     "," + context.getRover().getPosition().x() + "]\n";
         } else {
             return "STEP " + context.getStepNumber() +
-                    "; EVENT outcome" +
-                    "outcome; OUTCOME " + context.getOutcome().get();
+                    "; EVENT outcome OUTCOME " + context.getOutcome().get();
 
         }
     }

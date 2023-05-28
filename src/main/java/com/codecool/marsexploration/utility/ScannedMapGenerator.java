@@ -5,10 +5,10 @@ import com.codecool.marsexploration.data.Coordinate;
 
 import java.util.Map;
 
-public class MapGenerator {
+public class ScannedMapGenerator {
     Context context;
 
-    public MapGenerator(Context context) {
+    public ScannedMapGenerator(Context context) {
         this.context = context;
     }
 

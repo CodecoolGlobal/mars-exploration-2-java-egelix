@@ -25,4 +25,13 @@ public class Input {
         display.printLines();
         return result;
     }
+
+    public String getUserInput(String message) {
+        display.inputRequirement(message);
+        display.inputMessage();
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        display.printLines();
+        return input;
+    }
 }

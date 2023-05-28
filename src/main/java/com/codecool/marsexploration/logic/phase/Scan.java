@@ -3,7 +3,7 @@ package com.codecool.marsexploration.logic.phase;
 import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.Outcome;
-import com.codecool.marsexploration.data.Symbol;
+import com.codecool.marsexploration.data.symbol.Symbols;
 import com.codecool.marsexploration.data.Rover;
 import com.codecool.marsexploration.logic.CoordinateCreator;
 
@@ -40,9 +40,9 @@ public class Scan implements Phase {
 
     private int getCounter(int counterForOutcome, String symbol) {
         //ToDo nicht ganz O/C weil wenn es mehr Symbols gibt müsste man hier immer die neuen Terrains hinzufügen
-        if (symbol.equals(Symbol.PIT.getSymbol()) ||
-                symbol.equals(Symbol.MOUNTAIN.getSymbol()) ||
-                symbol.equals(Symbol.ALIEN.getSymbol())) {
+        if (symbol.equals(Symbols.PIT.getSymbol()) ||
+                symbol.equals(Symbols.MOUNTAIN.getSymbol()) ||
+                symbol.equals(Symbols.ALIEN.getSymbol())) {
             counterForOutcome++;
         }
         return counterForOutcome;
@@ -59,7 +59,7 @@ public class Scan implements Phase {
     }
 
     private void updateScannedCoordinates(Context context, Coordinate coordinate, String mapSymbol) {
-        for (Symbol enumValue : Symbol.values()) {
+        for (Symbols enumValue : Symbols.values()) {
             if (mapSymbol.equals(enumValue.getSymbol())) {
                 context.putScannedCoordinates(coordinate, mapSymbol);
             }

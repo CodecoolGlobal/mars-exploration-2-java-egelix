@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MapGeneratorTest {
+class ScannedMapGeneratorTest {
     public static Stream<Arguments> dataForGenerateMapOfScannedAreaTest(){
         return Stream.of(
                 Arguments.of(10, Outcome.TIMEOUT),

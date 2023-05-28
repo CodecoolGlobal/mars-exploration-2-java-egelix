@@ -3,7 +3,7 @@ package com.codecool.marsexploration.logic.movement;
 import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.Coordinate;
 import com.codecool.marsexploration.data.Outcome;
-import com.codecool.marsexploration.data.Symbol;
+import com.codecool.marsexploration.data.symbol.Symbols;
 import com.codecool.marsexploration.ui.Display;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class RandomMove implements Move {
     private void validateNextEmptyCoordinates(Context context, List<Coordinate> emptyFields) {
         for (Coordinate nextCoordinate : context.getNextMoveCoordinates()) {
             String mapSymbol = context.getMap()[nextCoordinate.y()][nextCoordinate.x()];
-            if (mapSymbol.equals(Symbol.EMPTY.getSymbol())) {
+            if (mapSymbol.equals(Symbols.EMPTY.getSymbol())) {
                 emptyFields.add(nextCoordinate);
             }
         }

@@ -1,20 +1,19 @@
 package com.codecool.marsexploration.io;
 
-import com.codecool.marsexploration.data.Context;
-import com.codecool.marsexploration.data.Symbol;
-import com.codecool.marsexploration.utility.MapGenerator;
+import com.codecool.marsexploration.data.symbol.Symbols;
+import com.codecool.marsexploration.utility.ScannedMapGenerator;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class ImageGenerator {
-    private final MapGenerator mapGenerator;
+    private final ScannedMapGenerator mapGenerator;
     private final ImageWriter imageWriter;
     private int counter = 0;
 
-    public ImageGenerator(Context context) {
-        this.mapGenerator = new MapGenerator(context);
-        this.imageWriter = new ImageWriter();
+    public ImageGenerator(ScannedMapGenerator mapGenerator, ImageWriter imageWriter) {
+        this.mapGenerator = mapGenerator;
+        this.imageWriter = imageWriter;
     }
 
     public void generateMapImage() {
@@ -22,7 +21,7 @@ public class ImageGenerator {
         String[][] map = mapGenerator.generateMapOfScannedArea();
         BufferedImage mapImg = getBlankImage(map.length, ratioCoordToPixels);
         setColoursToImage(map, mapImg, ratioCoordToPixels);
-        String path = "src/main/resources/ImgTest/test" + counter + ".jpg";
+        String path = "src/main/resources/ImgRoverScans/roverTrack" + counter + ".jpg";
         imageWriter.write(mapImg, path, "jpg");
         counter++;
     }
@@ -35,7 +34,6 @@ public class ImageGenerator {
                 setColoursToPixelArea(mapImg, color, y, x, ratio);
             }
         }
-
     }
 
     private void setColoursToPixelArea(BufferedImage mapImg, Color color, int row, int column, int ratio) {
@@ -51,17 +49,17 @@ public class ImageGenerator {
     private Color getColorForSymbol(String symbol) {
         if (symbol.equals("_")) {
             return new Color(255, 255, 255);
-        } else if (symbol.equals(Symbol.MOUNTAIN.getSymbol())) {
+        } else if (symbol.equals(Symbols.MOUNTAIN.getSymbol())) {
             return new Color(135, 62, 35);
-        } else if (symbol.equals(Symbol.PIT.getSymbol())) {
+        } else if (symbol.equals(Symbols.PIT.getSymbol())) {
             return new Color(0, 0, 0);
-        } else if (symbol.equals(Symbol.MINERAL.getSymbol())) {
+        } else if (symbol.equals(Symbols.MINERAL.getSymbol())) {
             return new Color(183, 176, 184);
-        } else if (symbol.equals(Symbol.WATER.getSymbol())) {
+        } else if (symbol.equals(Symbols.WATER.getSymbol())) {
             return new Color(26, 146, 237);
-        } else if (symbol.equals(Symbol.ALIEN.getSymbol())) {
+        } else if (symbol.equals(Symbols.ALIEN.getSymbol())) {
             return new Color(23, 230, 78);
-        } else if (symbol.equals(Symbol.SPACE_SHIP.getSymbol())) {
+        } else if (symbol.equals(Symbols.SPACE_SHIP.getSymbol())) {
             return new Color(255, 80, 80);
         } else {
             return new Color(226, 135, 67);

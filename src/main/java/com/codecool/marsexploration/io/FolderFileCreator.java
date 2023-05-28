@@ -5,8 +5,6 @@ import com.codecool.marsexploration.ui.Display;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Map;
 
 public class FolderFileCreator {
@@ -18,8 +16,8 @@ public class FolderFileCreator {
         this.readFolder = readFolder;
     }
 
-    public File getDestination() {
-        String path = "src/main/resources/output/" + createDatePartOfFileName();
+    public File getDestination(String inputPath) {
+        String path = inputPath + createDatePartOfFileName();
         createFolder(path);
         return createFile(path);
     }
@@ -29,6 +27,7 @@ public class FolderFileCreator {
         folder.mkdir();
     }
 
+    /* Alternative zu den File Code unten
     private int findNextLogIterationNumber(String path) {
         File folder = new File(path);
         int current = Arrays.stream(folder.listFiles())
@@ -41,6 +40,7 @@ public class FolderFileCreator {
                 .orElse(0);
         return current + 1;
     }
+     */
 
     private File createFile(String path) {
         Map<Integer, String> existingLogFiles = readFolder.fromPath(path, ".log", display);

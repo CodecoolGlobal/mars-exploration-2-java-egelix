@@ -20,7 +20,8 @@ public class ReadFolder {
             }
         }
         if (files.size() == 0){
-            display.errorMessage("Could not find a valid file");
+            display.errorMessage("Could not find a valid file/folder" +
+                    "New Folder was created");
         }
             return files;
     }

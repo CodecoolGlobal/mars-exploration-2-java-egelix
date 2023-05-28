@@ -2,7 +2,7 @@ package com.codecool.marsexploration.logic;
 
 import com.codecool.marsexploration.data.Context;
 import com.codecool.marsexploration.data.Coordinate;
-import com.codecool.marsexploration.data.Symbol;
+import com.codecool.marsexploration.data.symbol.Symbols;
 
 import java.util.Random;
 
@@ -18,14 +18,14 @@ public class Place {
         for (int i = 0; i < amount; i++) {
             Coordinate randomCoordinate = new Coordinate(random.nextInt(map.length), random.nextInt(map.length));
             String randomMapSymbol = map[randomCoordinate.y()][randomCoordinate.x()];
-            boolean isFieldEmpty = randomMapSymbol.equals(Symbol.EMPTY.getSymbol());
+            boolean isFieldEmpty = randomMapSymbol.equals(Symbols.EMPTY.getSymbol());
             do {
                 if (isFieldEmpty) {
-                    map[randomCoordinate.y()][randomCoordinate.x()] = Symbol.ALIEN.getSymbol();
+                    map[randomCoordinate.y()][randomCoordinate.x()] = Symbols.ALIEN.getSymbol();
                 } else {
                     randomCoordinate = new Coordinate(random.nextInt(map.length), random.nextInt(map.length));
                     randomMapSymbol = map[randomCoordinate.y()][randomCoordinate.x()];
-                    isFieldEmpty = randomMapSymbol.equals(Symbol.EMPTY.getSymbol());
+                    isFieldEmpty = randomMapSymbol.equals(Symbols.EMPTY.getSymbol());
                 }
             } while (!isFieldEmpty);
         }
